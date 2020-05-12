@@ -13,12 +13,14 @@
     "test:watch": "jest --watch",
     "test": "jest",
     "start": "webpack-dev-server --config webpack.config.dev.js --port 3000",
-    "build": "webpack --config webpack.config.prod.js"
+    "build": "webpack --config webpack.config.prod.js",
+    "serve": "http-server ./build"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "devDependencies": {
+    "http-server": "^0.12.3",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",

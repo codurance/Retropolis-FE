@@ -6,6 +6,7 @@ process.env.NODE_ENV = 'production';
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: './src/index.js',
+  devtool: "source-map",
   output: {
     path: path.resolve(__dirname, "build"),
     publicPath: "/",
