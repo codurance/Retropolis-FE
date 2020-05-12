@@ -1,3 +1,4 @@
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 process.env.NODE_ENV = 'production';
@@ -5,6 +6,11 @@ process.env.NODE_ENV = 'production';
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, "build"),
+    publicPath: "/",
+    filename: "bundle.js"
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
@@ -39,12 +45,23 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.css$/,
-        use: ['style-loader']
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        test: /(\.css)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: () => [require("cssnano")],
+              sourceMap: true
+            }
+          }
+        ]
       },
       {
         test: /\.(png|svg|jpg|gif|ico)$/,
