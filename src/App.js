@@ -1,8 +1,8 @@
 import React from 'react';
-import '../public/index.css';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
+import '../public/index.css';
 
 function App() {
   return (
