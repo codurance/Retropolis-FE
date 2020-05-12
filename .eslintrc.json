@@ -21,7 +21,7 @@
   "rules": {
     "no-debugger": "off",
     "no-console": "off",
-    "no-unused-vars": "warn",
+    "no-unused-vars": "error",
     "react/prop-types": "warn"
   },
   "settings": {
