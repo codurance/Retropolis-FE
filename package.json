@@ -16,7 +16,7 @@
     "test:watch": "jest --watch",
     "test": "jest",
     "start": "webpack-dev-server --config webpack.config.dev.js --port 3000",
-    "build": "webpack --config webpack.config.prod.js",
+    "build:prod": "webpack --config webpack.config.prod.js",
     "serve": "http-server ./build"
   },
   "eslintConfig": {
