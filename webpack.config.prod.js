@@ -1,16 +1,18 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CSSNano = require('cssnano');
+
 process.env.NODE_ENV = 'production';
 
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: './src/index.js',
-  devtool: "source-map",
+  devtool: 'source-map',
   output: {
-    path: path.resolve(__dirname, "build"),
-    publicPath: "/",
-    filename: "bundle.js"
+    path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -50,15 +52,15 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               sourceMap: true
             }
           },
           {
-            loader: "postcss-loader",
+            loader: 'postcss-loader',
             options: {
-              plugins: () => [require("cssnano")],
+              plugins: () => [CSSNano],
               sourceMap: true
             }
           }
