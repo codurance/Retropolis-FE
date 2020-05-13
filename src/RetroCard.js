@@ -5,15 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 import styled from 'styled-components';
 
 export default function RetroCard() {
-  const ListContainer = styled.div`
-  background-color: #dfe3e6;
-  border-radius: 3px;
-  width: 300px;
-  padding: 8px;
-  height: 100%;
-  margin: 0 8px 0 0;
-`;
-
   const CardContainer = styled.div`
     margin: 0 0 8px 0;
     position: relative;
@@ -22,14 +13,12 @@ export default function RetroCard() {
   `;
 
   return (
-    <ListContainer>
-      <CardContainer>
-        <Card>
-          <CardContent>
-            <Typography>Hello</Typography>
-          </CardContent>
-        </Card>
-      </CardContainer>
-    </ListContainer>
+    <CardContainer>
+      <Card>
+        <CardContent>
+          <Typography>Hello</Typography>
+        </CardContent>
+      </Card>
+    </CardContainer>
   );
 }
