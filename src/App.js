@@ -3,7 +3,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import '../public/index.css';
-import RetroList from './RetroList';
+import Column from './Column';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         </Toolbar>
       </AppBar>
 
-      <RetroList />
+      <Column />
     </div>
   );
 }
