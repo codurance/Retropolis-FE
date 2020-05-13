@@ -3,6 +3,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import '../public/index.css';
+import RetroCard from './RetroCard';
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
+
+      <RetroCard />
     </div>
   );
 }
