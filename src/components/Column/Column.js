@@ -45,10 +45,9 @@ const Column = ({ cards, addNewCardToBoard }) => {
   );
 };
 
+
 Column.propTypes = {
-  // FIXME Find a way to resolve this thing
-  // eslint-disable-next-line react/forbid-prop-types
-  cards: PropTypes.array.isRequired,
+  cards: PropTypes.arrayOf(CardItem.propTypes.card).isRequired,
   addNewCardToBoard: PropTypes.func.isRequired
 };
 

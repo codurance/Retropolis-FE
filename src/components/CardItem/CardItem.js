@@ -14,10 +14,13 @@ const CardItem = ({ card }) => (
   </Card>
 );
 
+const cardType = PropTypes.shape({
+  body: PropTypes.string,
+  id: PropTypes.number
+});
+
 CardItem.propTypes = {
-  // FIXME Find a way to resolve this thing
-  // eslint-disable-next-line react/forbid-prop-types
-  card: PropTypes.object.isRequired
+  card: cardType.isRequired
 };
 
 export default CardItem;
