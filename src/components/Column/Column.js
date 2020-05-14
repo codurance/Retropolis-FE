@@ -11,7 +11,7 @@ const Column = () => (
   <Card style={{ backgroundColor: '#f6f5f5' }}>
     <CardContent>
       <Typography variant="h5" gutterBottom>
-        Heading
+        Went well
       </Typography>
       <CardItem />
       <CardItem />
