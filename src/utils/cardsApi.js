@@ -2,9 +2,14 @@ const fetch = require('node-fetch');
 
 const baseUrl = 'http://retropolisbe-env.eba-xifiu248.eu-west-2.elasticbeanstalk.com/cards';
 
+function handleResponse(response) {
+  if (response.ok) return response.json();
+  throw new Error(response.text());
+}
+
 async function getCards() {
   const response = await fetch(baseUrl);
-  return response.json();
+  return handleResponse(response);
 }
 
 async function saveCard(card) {
@@ -13,7 +18,7 @@ async function saveCard(card) {
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(card)
   });
-  return response.json();
+  return handleResponse(response);
 }
 
 module.exports = { saveCard, getCards };
