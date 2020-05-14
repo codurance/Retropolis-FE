@@ -5,21 +5,21 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
+import * as PropTypes from 'prop-types';
 import CardItem from '../CardItem/CardItem';
 import CardForm from '../CardForm/CardForm';
 
-const Column = () => {
+const Column = ({ cards }) => {
   const [cardFormEdit, setCardFormEdit] = useState(false);
-
   return (
     <Card style={{ backgroundColor: '#f6f5f5' }}>
       <CardContent>
         <Typography variant="h5" gutterBottom>
           Went well
         </Typography>
-        <CardItem />
-        <CardItem />
-        <CardItem />
+
+        {cards.map((card) => <CardItem key={card.id} card={card} />)}
+
       </CardContent>
       <CardActions>
         { cardFormEdit
@@ -39,6 +39,12 @@ const Column = () => {
       </CardActions>
     </Card>
   );
+};
+
+Column.propTypes = {
+  // FIXME Find a way to resolve this thing
+  // eslint-disable-next-line react/forbid-prop-types
+  cards: PropTypes.array.isRequired
 };
 
 export default Column;
