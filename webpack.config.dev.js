@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 process.env.NODE_ENV = 'development';
 
@@ -7,6 +8,9 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   entry: './src/index.js',
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.API_URL': JSON.stringify('http://localhost:5000')
+    }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       favicon: './public/favicon.ico'

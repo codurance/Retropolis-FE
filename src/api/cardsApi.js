@@ -1,19 +1,17 @@
 const fetch = require('node-fetch');
 
-const baseUrl = 'http://retropolisbe-env.eba-xifiu248.eu-west-2.elasticbeanstalk.com/cards';
-
 function handleResponse(response) {
   if (response.ok) return response.json();
   throw new Error(response.text());
 }
 
 async function getCards() {
-  const response = await fetch(baseUrl);
+  const response = await fetch(`${process.env.API_URL}/cards`);
   return handleResponse(response);
 }
 
 async function saveCard(card) {
-  const response = await fetch(baseUrl, {
+  const response = await fetch(`${process.env.API_URL}/cards`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(card)
