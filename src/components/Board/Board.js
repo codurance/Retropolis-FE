@@ -5,7 +5,7 @@ import Column from '../Column/Column';
 const Board = () => (
   <div>
     <Grid container spacing={3}>
-      <Grid item xs={4}><Column /></Grid>
+      <Grid item xs={3}><Column /></Grid>
     </Grid>
   </div>
 );

@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 
 const NavBar = () => (
-  <AppBar position="static">
+  <AppBar position="static" style={{ marginBottom: '10px' }}>
     <Toolbar>
       <Typography variant="h6">
         Retropolis

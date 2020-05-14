@@ -5,13 +5,17 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
+import CardItem from '../CardItem/CardItem';
 
 const Column = () => (
-  <Card>
+  <Card style={{ backgroundColor: '#f6f5f5' }}>
     <CardContent>
       <Typography variant="h5" gutterBottom>
-        h5. Heading
+        Heading
       </Typography>
+      <CardItem />
+      <CardItem />
+      <CardItem />
     </CardContent>
     <CardActions>
       <Button style={{ textTransform: 'capitalize' }} size="small" startIcon={<AddIcon />}>Add card</Button>
