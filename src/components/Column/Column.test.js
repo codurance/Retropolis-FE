@@ -23,12 +23,12 @@ it('should render the column', () => {
 
 it('should render add card button', () => {
   const { getByText } = renderColumn();
-  getByText('Add card');
+  getByText('Add a card');
 });
 
 it('should render a form when add card button is clicked', () => {
-  const { getByText } = renderColumn();
-  const cardButton = getByText('Add card');
+  const { getByText, getAllByText } = renderColumn();
+  const cardButton = getByText('Add a card');
   cardButton.click();
-  getByText('Enter a title for this card...');
+  getAllByText('Enter a title for this card...');
 });
