@@ -24,7 +24,7 @@ const Column = () => {
       <CardActions>
         { cardFormEdit
           ? (
-            <CardForm />
+            <CardForm handCancelButton={setCardFormEdit} />
           )
           : (
             <Button
