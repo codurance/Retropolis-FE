@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: node:11.10.1
+      - image: circleci/node:latest
 
     working_directory: ~/repo
 
@@ -10,19 +10,28 @@ jobs:
       - checkout
 
       - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install dependencies
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            sudo pip install --upgrade setuptools
+            sudo pip install awscli --upgrade
 
       - run: yarn install
 
       - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ./node_modules
 
       - run: yarn lint
 
       - run: yarn test
 
       - run: yarn build:prod
+
+      - run: aws s3 sync build/ s3://retropolis-fe
