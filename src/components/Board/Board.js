@@ -6,16 +6,13 @@ import * as cardsApi from '../../utils/cardsApi';
 const Board = () => {
   const [cards, setCards] = useState([]);
 
-  const addNewCard = (newCard) => {
+  const addCard = (newCard) => {
     setCards([...cards, newCard]);
   };
 
   useEffect(() => {
     cardsApi.getCards().then((cardsResponse) => {
       setCards(cardsResponse);
-      console.log(cardsResponse);
-    }).catch((err) => {
-      console.log(err);
     });
   }, []);
 
@@ -23,7 +20,7 @@ const Board = () => {
     <div>
       <Grid container spacing={3}>
         <Grid item xs={3}>
-          <Column cards={cards} addNewCard={addNewCard} />
+          <Column cards={cards} addNewCardToBoard={addCard} />
         </Grid>
       </Grid>
     </div>

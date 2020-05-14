@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const baseUrl = 'http://localhost:5000/cards';
+const baseUrl = 'http://retropolisbe-env.eba-xifiu248.eu-west-2.elasticbeanstalk.com/cards';
 
 function handleResponse(response) {
   if (response.ok) return response.json();

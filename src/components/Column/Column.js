@@ -9,11 +9,11 @@ import * as PropTypes from 'prop-types';
 import CardItem from '../CardItem/CardItem';
 import CardForm from '../CardForm/CardForm';
 
-const Column = ({ cards, addNewCard }) => {
+const Column = ({ cards, addNewCardToBoard }) => {
   const [cardFormEdit, setCardFormEdit] = useState(false);
 
-  const addCard = (newCard) => {
-    addNewCard(newCard);
+  const passNewCardToBoard = (newCard) => {
+    addNewCardToBoard(newCard);
   };
 
   return (
@@ -29,7 +29,7 @@ const Column = ({ cards, addNewCard }) => {
       <CardActions>
         { cardFormEdit
           ? (
-            <CardForm handleCancelButton={setCardFormEdit} handleAddCard={addCard} />
+            <CardForm handleCancelButton={setCardFormEdit} handleAddCard={passNewCardToBoard} />
           )
           : (
             <Button
@@ -50,7 +50,7 @@ Column.propTypes = {
   // FIXME Find a way to resolve this thing
   // eslint-disable-next-line react/forbid-prop-types
   cards: PropTypes.array.isRequired,
-  addNewCard: PropTypes.func.isRequired
+  addNewCardToBoard: PropTypes.func.isRequired
 };
 
 export default Column;
