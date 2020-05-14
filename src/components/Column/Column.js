@@ -28,9 +28,7 @@ const Column = () => {
           )
           : (
             <Button
-              onClick={() => {
-                setCardFormEdit(!cardFormEdit);
-              }}
+              onClick={() => setCardFormEdit(!cardFormEdit)}
               style={{ textTransform: 'capitalize' }}
               size="small"
               startIcon={<AddIcon />}
