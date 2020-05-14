@@ -17,6 +17,7 @@
     "clean:build": "rm -rf build/",
     "test:watch": "jest --watch",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "start": "webpack-dev-server --config webpack.config.dev.js --port 3000",
     "build:prod": "webpack --config webpack.config.prod.js",
     "serve": "http-server ./build"
@@ -47,7 +48,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",
     "postcss-loader": "^3.0.0",
-    "prettier": "^2.0.5",
     "react-test-renderer": "^16.13.1",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",

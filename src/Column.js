@@ -14,10 +14,8 @@ export default function Column() {
 `;
   return (
     <ListContainer>
-      <div>
-        <RetroCard />
-        <CreateCard />
-      </div>
+      <RetroCard />
+      <CreateCard />
     </ListContainer>
   );
 }
