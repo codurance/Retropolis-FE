@@ -17,13 +17,11 @@ const Board = () => {
   }, []);
 
   return (
-    <div>
-      <Grid container spacing={3}>
-        <Grid item xs={3}>
-          <Column cards={cards} addNewCardToBoard={addCard} />
-        </Grid>
+    <Grid container spacing={3}>
+      <Grid item xs={3}>
+        <Column cards={cards} addNewCardToBoard={addCard} />
       </Grid>
-    </div>
+    </Grid>
   );
 };
 
