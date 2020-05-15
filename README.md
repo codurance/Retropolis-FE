@@ -36,7 +36,10 @@ You can lint your code with `yarn lint`. This command will try to fix any error/
 You can build the application in production mode with `yarn build:prod`
 
 #### Clean build
-You can remove the bundled build folder by using the `yarn clean:build`
+You can remove the bundled build folder by using the `yarn build:clean`
+
+#### Pre-push
+You can run the pre-push script to make sure you are ready to open a PR  `yarn prepush`. This script will try to lint, test, and build on production mode.
 
 > **Note:** You can use `npm` instead of `yarn`
 
