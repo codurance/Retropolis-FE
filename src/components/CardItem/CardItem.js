@@ -8,14 +8,14 @@ const CardItem = ({ card }) => (
   <Card style={{ marginBottom: '10px' }}>
     <CardContent>
       <Typography gutterBottom>
-        { card.body }
+        { card.text }
       </Typography>
     </CardContent>
   </Card>
 );
 
 const cardType = PropTypes.shape({
-  body: PropTypes.string,
+  text: PropTypes.string,
   id: PropTypes.number
 });
 
