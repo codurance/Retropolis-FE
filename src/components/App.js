@@ -1,7 +1,7 @@
 import React from 'react';
-import '../public/index.css';
-import NavBar from './components/NavBar/NavBar';
-import Board from './components/Board/Board';
+import '../../public/index.css';
+import NavBar from './NavBar/NavBar';
+import Board from './Board/Board';
 
 function App() {
   return (

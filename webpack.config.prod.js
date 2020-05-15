@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CSSNano = require('cssnano');
+const webpack = require('webpack');
 
 process.env.NODE_ENV = 'production';
 
@@ -15,6 +16,10 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.API_URL': JSON.stringify('http://retropolisbe-env.eba-xifiu248.eu-west-2.elasticbeanstalk.com')
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
     }),

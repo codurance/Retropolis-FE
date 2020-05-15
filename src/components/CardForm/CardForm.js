@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 import * as PropTypes from 'prop-types';
-import { saveCard } from '../../utils/cardsApi';
+import { saveCard } from '../../api/cardsApi';
 
 const CardForm = ({ handleCancelButton, handleAddCard }) => {
   const [newCardText, setNewCardText] = useState('');
@@ -22,36 +22,39 @@ const CardForm = ({ handleCancelButton, handleAddCard }) => {
   };
 
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <TextField
-          label="Enter a title for this card..."
-          multiline
-          fullWidth
-          value={newCardText}
-          onChange={handleChangeText}
-          rowsMax={4}
-        />
+    <form onSubmit={() => handleAddCardButton()}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <TextField
+            label="Enter a title for this card..."
+            fullWidth
+            autoFocus
+            style={{ backgroundColor: 'white' }}
+            variant="outlined"
+            value={newCardText}
+            onChange={handleChangeText}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            style={{ textTransform: 'capitalize', marginRight: '10px' }}
+            size="small"
+            type="submit"
+            color="primary"
+            variant="contained"
+          >
+            Save card
+          </Button>
+          <IconButton
+            style={{ textTransform: 'capitalize' }}
+            size="small"
+            onClick={() => handleCancelButton()}
+          >
+            <ClearIcon fontSize="small" />
+          </IconButton>
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Button
-          style={{ textTransform: 'capitalize', marginRight: '10px' }}
-          size="small"
-          color="primary"
-          variant="contained"
-          onClick={() => handleAddCardButton()}
-        >
-          Save card
-        </Button>
-        <IconButton
-          style={{ textTransform: 'capitalize' }}
-          size="small"
-          onClick={() => handleCancelButton()}
-        >
-          <ClearIcon fontSize="small" />
-        </IconButton>
-      </Grid>
-    </Grid>
+    </form>
   );
 };
 

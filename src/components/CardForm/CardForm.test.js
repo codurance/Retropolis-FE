@@ -20,6 +20,6 @@ function renderForm(args) {
 }
 
 it('renders text field', () => {
-  const { getByText } = renderForm();
-  getByText('Enter a title for this card...');
+  const { getAllByText } = renderForm();
+  getAllByText('Enter a title for this card...');
 });

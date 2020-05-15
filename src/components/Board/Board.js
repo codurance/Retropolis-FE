@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Column from '../Column/Column';
-import * as cardsApi from '../../utils/cardsApi';
+import * as cardsApi from '../../api/cardsApi';
 
 const Board = () => {
   const [cards, setCards] = useState([]);
