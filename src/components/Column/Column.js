@@ -11,9 +11,24 @@ import CardForm from '../CardForm/CardForm';
 const Column = ({ cards, addNewCardToBoard }) => {
   const [cardFormEdit, setCardFormEdit] = useState(false);
 
-  const passNewCardToBoard = (newCard) => {
-    addNewCardToBoard(newCard);
-  };
+  const renderFooter = () => (
+    <div style={{ marginTop: '15px' }}>
+      {cardFormEdit
+        ? (
+          <CardForm handleCancelButton={setCardFormEdit} handleAddCard={addNewCardToBoard} />
+        )
+        : (
+          <Button
+            onClick={() => setCardFormEdit(!cardFormEdit)}
+            style={{ textTransform: 'capitalize' }}
+            size="medium"
+            startIcon={<AddIcon />}
+          >
+            Add a card
+          </Button>
+        )}
+    </div>
+  );
 
   return (
     <Card style={{ backgroundColor: '#f6f5f5' }}>
@@ -24,22 +39,8 @@ const Column = ({ cards, addNewCardToBoard }) => {
 
         {cards.map((card) => <CardItem key={card.id} card={card} />)}
 
-        <div style={{ marginTop: '15px' }}>
-          { cardFormEdit
-            ? (
-              <CardForm handleCancelButton={setCardFormEdit} handleAddCard={passNewCardToBoard} />
-            )
-            : (
-              <Button
-                onClick={() => setCardFormEdit(!cardFormEdit)}
-                style={{ textTransform: 'capitalize' }}
-                size="medium"
-                startIcon={<AddIcon />}
-              >
-                Add a card
-              </Button>
-            )}
-        </div>
+        {renderFooter()}
+
       </CardContent>
     </Card>
   );
