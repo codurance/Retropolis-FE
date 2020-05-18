@@ -10,6 +10,4 @@ async function getBoards() {
   return handleResponse(response);
 }
 
-getBoards().then(console.log);
-
 module.exports = { getBoards };
