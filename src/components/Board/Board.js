@@ -3,6 +3,13 @@ import Grid from '@material-ui/core/Grid';
 import Column from '../Column/Column';
 import * as cardsApi from '../../api/cardsApi';
 
+// import boardsApi
+// replace .getCards() with .getBoard()
+// replace useState [cards, setCards] => board, setBoard
+// need 2 other Grid components
+// cards={cards} => cards={board.columns.first.cards}
+// loop columns object get column.cards
+
 const Board = () => {
   const [cards, setCards] = useState([]);
 

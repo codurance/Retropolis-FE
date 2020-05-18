@@ -48,6 +48,7 @@
     "http-server": "^0.12.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",
+    "jest-fetch-mock": "^3.0.3",
     "postcss-loader": "^3.0.0",
     "react-test-renderer": "^16.13.1",
     "style-loader": "^1.2.1",
