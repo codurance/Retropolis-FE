@@ -63,6 +63,7 @@ const Column = ({ columnProp, addNewCardToBoard }) => {
         <div style={{ marginTop: '15px' }}>
           {renderForm()}
         </div>
+        {renderFooter()}
       </CardContent>
     </Card>
   );
