@@ -9,6 +9,7 @@ afterEach(cleanup);
 function renderForm(args) {
   const defaultProps = {
     cards: [],
+    colId: 1,
     handleCancelButton: () => {
     },
     handleAddCard: () => {

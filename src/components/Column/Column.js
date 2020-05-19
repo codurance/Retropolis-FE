@@ -31,26 +31,6 @@ const Column = ({ columnProp, addNewCardToBoard }) => {
         Add a card
       </Button>
     ));
-
-  const renderFooter = () => (
-    <div style={{ marginTop: '15px' }}>
-      {cardFormEdit
-        ? (
-          <CardForm handleCancelButton={setCardFormEdit} handleAddCard={addNewCardToBoard} />
-        )
-        : (
-          <Button
-            onClick={() => setCardFormEdit(!cardFormEdit)}
-            style={{ textTransform: 'capitalize' }}
-            size="medium"
-            startIcon={<AddIcon />}
-          >
-            Add a card
-          </Button>
-        )}
-    </div>
-  );
-
   return (
     <Card style={{ backgroundColor: '#f6f5f5' }}>
       <CardContent>
@@ -63,7 +43,6 @@ const Column = ({ columnProp, addNewCardToBoard }) => {
         <div style={{ marginTop: '15px' }}>
           {renderForm()}
         </div>
-        {renderFooter()}
       </CardContent>
     </Card>
   );
