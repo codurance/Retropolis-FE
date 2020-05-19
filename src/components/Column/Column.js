@@ -57,10 +57,12 @@ const Column = ({ columnProp, addNewCardToBoard }) => {
         <Typography variant="h5" gutterBottom>
           {columnProp.title}
         </Typography>
+
+        {columnProp.cards.map((card) => <CardItem key={card.id} card={card} />)}
+
         <div style={{ marginTop: '15px' }}>
           {renderForm()}
         </div>
-        {renderFooter()}
       </CardContent>
     </Card>
   );
