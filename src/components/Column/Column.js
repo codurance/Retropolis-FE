@@ -44,9 +44,14 @@ const Column = ({ columnProp, addNewCardToBoard }) => {
   );
 };
 
+const columnType = PropTypes.shape({
+  id: PropTypes.number,
+  title: PropTypes.string,
+  cards: PropTypes.array
+});
 
 Column.propTypes = {
-  // cards: PropTypes.arrayOf(CardItem.propTypes.card).isRequired,
+  columnProp: columnType.isRequired,
   addNewCardToBoard: PropTypes.func.isRequired
 };
 
