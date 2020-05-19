@@ -8,9 +8,8 @@ import * as PropTypes from 'prop-types';
 import CardItem from '../CardItem/CardItem';
 import CardForm from '../CardForm/CardForm';
 
-const Column = ({ cards, addNewCardToBoard }) => {
+const Column = ({ columnProp, addNewCardToBoard }) => {
   const [cardFormEdit, setCardFormEdit] = useState(false);
-
   const passNewCardToBoard = (newCard) => {
     addNewCardToBoard(newCard);
   };
@@ -19,10 +18,10 @@ const Column = ({ cards, addNewCardToBoard }) => {
     <Card style={{ backgroundColor: '#f6f5f5' }}>
       <CardContent>
         <Typography variant="h5" gutterBottom>
-          Went well
+          {columnProp.title}
         </Typography>
 
-        {cards.map((card) => <CardItem key={card.id} card={card} />)}
+        {columnProp.cards.map((card) => <CardItem key={card.id} card={card} />)}
 
         <div style={{ marginTop: '15px' }}>
           { cardFormEdit
@@ -47,7 +46,7 @@ const Column = ({ cards, addNewCardToBoard }) => {
 
 
 Column.propTypes = {
-  cards: PropTypes.arrayOf(CardItem.propTypes.card).isRequired,
+  // cards: PropTypes.arrayOf(CardItem.propTypes.card).isRequired,
   addNewCardToBoard: PropTypes.func.isRequired
 };
 

@@ -11,7 +11,7 @@ import { getBoards } from '../../api/boardsApi';
 // loop columns object get column.cards
 
 const Board = () => {
-  const [board, setBoard] = useState({});
+  const [board, setBoard] = useState({ columns: [] });
 
   const addCard = (newCard) => {
     setBoard({ ...board, newCard });
@@ -26,9 +26,13 @@ const Board = () => {
   return (
     <div>
       <Grid container spacing={3}>
-        {/*<Grid item xs={3}>*/}
-        {/*  <Column cards={board} addNewCardToBoard={addCard} />*/}
-        {/*</Grid>*/}
+
+        {board.columns.map((column) => (
+          <Grid item xs={3} key={column.id}>
+            <Column key={column.id} columnProp={column} addNewCardToBoard={addCard} />
+          </Grid>
+        ))}
+
       </Grid>
     </div>
   );

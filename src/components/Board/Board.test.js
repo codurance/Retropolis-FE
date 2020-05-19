@@ -9,7 +9,7 @@ it('shows three columns', async () => {
   await act(async () => {
     const { getByText, findByText } = render(<Board />);
     await findByText(() => {
-      getByText('hello');
+      getByText('Start');
     });
   });
 });
