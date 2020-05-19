@@ -1,6 +1,6 @@
 import React from 'react';
 import { jest, it } from '@jest/globals';
-import {act, render, waitFor } from '@testing-library/react';
+import { act, render, waitFor } from '@testing-library/react';
 import Board from './Board';
 
 jest.mock('../../api/boardsApi');

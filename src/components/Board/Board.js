@@ -2,19 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Column from '../Column/Column';
 import { getBoards } from '../../api/boardsApi';
-
-// import boardsApi
-// replace .getCards() with .getBoard()
-// replace useState [cards, setCards] => board, setBoard
-// need 2 other Grid components
-// cards={cards} => cards={board.columns.first.cards}
-// loop columns object get column.cards
+import { addNewCard } from '../../services/BoardService';
 
 const Board = () => {
   const [board, setBoard] = useState({ columns: [] });
 
   const addCard = (newCard) => {
-    setBoard({ ...board, newCard });
+    const newState = addNewCard(board, newCard);
+
+    setBoard({ ...board, newState });
   };
 
   useEffect(() => {
@@ -36,6 +32,8 @@ const Board = () => {
       </Grid>
     </div>
   );
+
+
 };
 
 export default Board;
