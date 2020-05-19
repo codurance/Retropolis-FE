@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Column from '../Column/Column';
 import * as cardsApi from '../../api/cardsApi';
+import { getBoards } from '../../api/boardsApi';
 
 // import boardsApi
 // replace .getCards() with .getBoard()
@@ -18,7 +19,7 @@ const Board = () => {
   };
 
   useEffect(() => {
-    cardsApi.getCards().then((cardsResponse) => {
+    getBoards().then((cardsResponse) => {
       setCards(cardsResponse);
     });
   }, []);
