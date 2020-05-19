@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Column from '../Column/Column';
-import * as cardsApi from '../../api/cardsApi';
 import { getBoards } from '../../api/boardsApi';
 
 // import boardsApi
@@ -12,24 +11,24 @@ import { getBoards } from '../../api/boardsApi';
 // loop columns object get column.cards
 
 const Board = () => {
-  const [cards, setCards] = useState([]);
+  const [board, setBoard] = useState({});
 
   const addCard = (newCard) => {
-    setCards([...cards, newCard]);
+    setBoard({ ...board, newCard });
   };
 
   useEffect(() => {
-    getBoards().then((cardsResponse) => {
-      setCards(cardsResponse);
+    getBoards().then((boardResponse) => {
+      setBoard(boardResponse);
     });
   }, []);
 
   return (
     <div>
       <Grid container spacing={3}>
-        <Grid item xs={3}>
-          <Column cards={cards} addNewCardToBoard={addCard} />
-        </Grid>
+        {/*<Grid item xs={3}>*/}
+        {/*  <Column cards={board} addNewCardToBoard={addCard} />*/}
+        {/*</Grid>*/}
       </Grid>
     </div>
   );
