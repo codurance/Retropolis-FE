@@ -21,7 +21,12 @@ it('shows three columns', async () => {
   });
 });
 
-it('should ', () => {
+it('should return error message when response fails', async () => {
   setFail(true);
-  getBoards().then().catch(console.log);
+  await act(async () => {
+    const { getByText } = render(<Board />);
+    await waitFor(() => {
+      getByText('Sorry something went wrong...');
+    });
+  });
 });
