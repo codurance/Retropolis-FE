@@ -1,4 +1,6 @@
-# Retropolis-FE [![codurance](https://circleci.com/gh/codurance/Retropolis-FE.svg?style=shield)](https://github.com/codurance/Retropolis-FE) [![Dependabot](https://badgen.net/badge/Dependabot/enabled/green?icon=dependabot)](https://dependabot.com/)
+# Retropolis-FE [![codurance](https://circleci.com/gh/codurance/Retropolis-FE.svg?style=shield)](https://github.com/codurance/Retropolis-FE) [![Known Vulnerabilities](https://snyk.io/test/github/codurance/Retropolis-FE/badge.svg?targetFile=package.json)](https://snyk.io/test/github/codurance/Retropolis-FE?targetFile=package.json)
+
+
 
 The front end of the Retropolis application. This is the final project for the apprentices Mar-May-2020.
 The project is a remote tool to facilitate remote retrospectives.
