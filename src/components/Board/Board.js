@@ -32,8 +32,6 @@ const Board = () => {
       </Grid>
     </div>
   );
-
-
 };
 
 export default Board;
