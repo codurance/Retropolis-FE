@@ -13,6 +13,24 @@ const Column = ({ columnProp, addNewCardToBoard }) => {
   const passNewCardToBoard = (newCard) => {
     addNewCardToBoard(newCard);
   };
+  const renderForm = () => (cardFormEdit
+    ? (
+      <CardForm
+        handleCancelButton={setCardFormEdit}
+        handleAddCard={passNewCardToBoard}
+        colId={columnProp.id}
+      />
+    )
+    : (
+      <Button
+        onClick={() => setCardFormEdit(!cardFormEdit)}
+        style={{ textTransform: 'capitalize' }}
+        size="medium"
+        startIcon={<AddIcon />}
+      >
+        Add a card
+      </Button>
+    ));
 
   return (
     <Card style={{ backgroundColor: '#f6f5f5' }}>
@@ -24,20 +42,7 @@ const Column = ({ columnProp, addNewCardToBoard }) => {
         {columnProp.cards.map((card) => <CardItem key={card.id} card={card} />)}
 
         <div style={{ marginTop: '15px' }}>
-          { cardFormEdit
-            ? (
-              <CardForm handleCancelButton={setCardFormEdit} handleAddCard={passNewCardToBoard} />
-            )
-            : (
-              <Button
-                onClick={() => setCardFormEdit(!cardFormEdit)}
-                style={{ textTransform: 'capitalize' }}
-                size="medium"
-                startIcon={<AddIcon />}
-              >
-                Add a card
-              </Button>
-            )}
+          {renderForm()}
         </div>
       </CardContent>
     </Card>

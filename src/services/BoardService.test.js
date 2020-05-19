@@ -1,4 +1,4 @@
-import { expect, it } from "@jest/globals";
+import { expect, it } from '@jest/globals';
 import { addNewCard } from './BoardService';
 
 it('returns a new board with the new card added', () => {
