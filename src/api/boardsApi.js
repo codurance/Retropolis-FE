@@ -6,7 +6,6 @@ function handleResponse(response) {
 }
 
 async function getBoards() {
-  // const response = await fetch('http://localhost:3000/src/api/boardsApiMock.json');
   const response = await fetch(`${process.env.API_URL}/board`);
   return handleResponse(response);
 }
