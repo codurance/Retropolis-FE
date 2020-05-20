@@ -8,47 +8,51 @@ import * as PropTypes from 'prop-types';
 import CardItem from '../CardItem/CardItem';
 import CardForm from '../CardForm/CardForm';
 
-const Column = ({ cards, addNewCardToBoard }) => {
+const Column = ({ columnProp, addNewCardToBoard }) => {
   const [cardFormEdit, setCardFormEdit] = useState(false);
-
-  const renderFooter = () => (
-    <div style={{ marginTop: '15px' }}>
-      {cardFormEdit
-        ? (
-          <CardForm handleCancelButton={setCardFormEdit} handleAddCard={addNewCardToBoard} />
-        )
-        : (
-          <Button
-            onClick={() => setCardFormEdit(!cardFormEdit)}
-            style={{ textTransform: 'capitalize' }}
-            size="medium"
-            startIcon={<AddIcon />}
-          >
-            Add a card
-          </Button>
-        )}
-    </div>
-  );
-
+  const renderForm = () => (cardFormEdit
+    ? (
+      <CardForm
+        handleCancelButton={setCardFormEdit}
+        handleAddCard={addNewCardToBoard}
+        colId={columnProp.id}
+      />
+    )
+    : (
+      <Button
+        onClick={() => setCardFormEdit(!cardFormEdit)}
+        style={{ textTransform: 'capitalize' }}
+        size="medium"
+        startIcon={<AddIcon />}
+      >
+        Add a card
+      </Button>
+    ));
   return (
     <Card style={{ backgroundColor: '#f6f5f5' }}>
       <CardContent>
         <Typography variant="h5" gutterBottom>
-          Went well
+          {columnProp.title}
         </Typography>
 
-        {cards.map((card) => <CardItem key={card.id} card={card} />)}
+        {columnProp.cards.map((card) => <CardItem key={card.id} cardProp={card} />)}
 
-        {renderFooter()}
-
+        <div style={{ marginTop: '15px' }}>
+          {renderForm()}
+        </div>
       </CardContent>
     </Card>
   );
 };
 
+const columnType = PropTypes.shape({
+  id: PropTypes.number,
+  title: PropTypes.string,
+  cards: PropTypes.array
+});
 
 Column.propTypes = {
-  cards: PropTypes.arrayOf(CardItem.propTypes.card).isRequired,
+  columnProp: columnType.isRequired,
   addNewCardToBoard: PropTypes.func.isRequired
 };
 

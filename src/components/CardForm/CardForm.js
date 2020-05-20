@@ -7,12 +7,12 @@ import IconButton from '@material-ui/core/IconButton';
 import * as PropTypes from 'prop-types';
 import { saveCard } from '../../api/cardsApi';
 
-const CardForm = ({ handleCancelButton, handleAddCard }) => {
+const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
   const [newCardText, setNewCardText] = useState('');
 
   const handleAddCardButton = () => {
     handleCancelButton();
-    saveCard({ text: newCardText }).then((newCard) => {
+    saveCard({ columnId: colId, text: newCardText }).then((newCard) => {
       handleAddCard(newCard);
     });
   };
@@ -59,6 +59,7 @@ const CardForm = ({ handleCancelButton, handleAddCard }) => {
 };
 
 CardForm.propTypes = {
+  colId: PropTypes.number.isRequired,
   handleCancelButton: PropTypes.func.isRequired,
   handleAddCard: PropTypes.func.isRequired
 };

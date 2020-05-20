@@ -5,11 +5,6 @@ function handleResponse(response) {
   throw new Error(response.text());
 }
 
-async function getCards() {
-  const response = await fetch(`${process.env.API_URL}/cards`);
-  return handleResponse(response);
-}
-
 async function saveCard(card) {
   const response = await fetch(`${process.env.API_URL}/cards`, {
     method: 'POST',
@@ -19,4 +14,4 @@ async function saveCard(card) {
   return handleResponse(response);
 }
 
-module.exports = { saveCard, getCards };
+module.exports = { saveCard };
