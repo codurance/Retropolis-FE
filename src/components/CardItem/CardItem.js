@@ -4,11 +4,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import * as PropTypes from 'prop-types';
 
-const CardItem = ({ card }) => (
+const CardItem = ({ cardProp }) => (
   <Card style={{ marginBottom: '10px' }}>
     <CardContent>
       <Typography gutterBottom>
-        { card.text }
+        { cardProp.text }
       </Typography>
     </CardContent>
   </Card>
@@ -20,7 +20,7 @@ const cardType = PropTypes.shape({
 });
 
 CardItem.propTypes = {
-  card: cardType.isRequired
+  cardProp: cardType.isRequired
 };
 
 export default CardItem;

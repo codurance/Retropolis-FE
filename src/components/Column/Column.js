@@ -10,14 +10,11 @@ import CardForm from '../CardForm/CardForm';
 
 const Column = ({ columnProp, addNewCardToBoard }) => {
   const [cardFormEdit, setCardFormEdit] = useState(false);
-  const passNewCardToBoard = (newCard) => {
-    addNewCardToBoard(newCard);
-  };
   const renderForm = () => (cardFormEdit
     ? (
       <CardForm
         handleCancelButton={setCardFormEdit}
-        handleAddCard={passNewCardToBoard}
+        handleAddCard={addNewCardToBoard}
         colId={columnProp.id}
       />
     )
@@ -38,7 +35,7 @@ const Column = ({ columnProp, addNewCardToBoard }) => {
           {columnProp.title}
         </Typography>
 
-        {columnProp.cards.map((card) => <CardItem key={card.id} card={card} />)}
+        {columnProp.cards.map((card) => <CardItem key={card.id} cardProp={card} />)}
 
         <div style={{ marginTop: '15px' }}>
           {renderForm()}

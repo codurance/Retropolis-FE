@@ -5,11 +5,6 @@ function handleResponse(response) {
   throw new Error(response.text());
 }
 
-async function getCards() {
-  const response = await fetch(`${process.env.API_URL}/cards`);
-  return handleResponse(response);
-}
-
 function invalid(card) {
   return (!card.text || !card.text.length || card.columnId === null || card.columnId === undefined);
 }
@@ -25,4 +20,4 @@ async function saveCard(card) {
   return handleResponse(response);
 }
 
-module.exports = { saveCard, getCards };
+module.exports = { saveCard };

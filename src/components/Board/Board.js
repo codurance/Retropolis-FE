@@ -16,13 +16,12 @@ const Board = () => {
   useEffect(() => {
     getBoards().then((boardResponse) => {
       setBoard(boardResponse);
-    }).catch((e) => {
-      console.log(e.message);
+    }).catch(() => {
       setError(true);
     });
   }, []);
 
-  const renderGrid = () => (error ? (
+  const renderBoard = () => (error ? (
     <>
       <p>Sorry something went wrong...</p>
     </>
@@ -37,9 +36,9 @@ const Board = () => {
   ));
 
   return (
-    <div>
-      { renderGrid() }
-    </div>
+    <>
+      { renderBoard() }
+    </>
   );
 };
 
