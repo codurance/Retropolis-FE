@@ -5,7 +5,7 @@ import Column from '../Column/Column';
 import { getBoards } from '../../api/boardsApi';
 import { addNewCard } from '../../services/BoardService';
 
-const Board = ({user}) => {
+const Board = ({ user }) => {
   const [board, setBoard] = useState({ columns: [] });
   const [error, setError] = useState(false);
   const addCard = (newCard) => {
