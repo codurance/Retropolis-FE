@@ -12,7 +12,6 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
 
   const handleAddCardButton = () => {
     handleCancelButton();
-
     saveCard({ columnId: colId, text: newCardText }).then((newCard) => {
       handleAddCard(newCard);
     });
