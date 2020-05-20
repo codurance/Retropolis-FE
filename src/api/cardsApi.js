@@ -19,4 +19,4 @@ async function saveCard(card) {
   return handleResponse(response);
 }
 
-module.exports = { saveCard, getCards };
+module.exports = { saveCard };
