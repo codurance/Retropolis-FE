@@ -8,6 +8,9 @@ import * as PropTypes from 'prop-types';
 const NavBar = ({ processUser }) => (
   <AppBar position="static" style={{ marginBottom: '10px' }}>
     <Toolbar>
+      <Typography variant="h6">
+        Retropolis
+      </Typography>
       <GoogleLogin
         clientId={process.env.GOOGLE_AUTH_CLIENT_ID}
         buttonText="Login"
@@ -15,9 +18,6 @@ const NavBar = ({ processUser }) => (
         onFailure={processUser}
         cookiePolicy="single_host_origin"
       />
-      <Typography variant="h6">
-        Retropolis
-      </Typography>
     </Toolbar>
   </AppBar>
 );
