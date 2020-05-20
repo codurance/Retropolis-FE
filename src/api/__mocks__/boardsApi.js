@@ -4,9 +4,7 @@ let fail = false;
 
 async function getBoards() {
   return fail ? Promise.reject(new Error('fail'))
-    : new Promise((resolve) => {
-      resolve(dummyData);
-    });
+    : new Promise((resolve) => resolve(dummyData));
 }
 
 function setFail(state) {
