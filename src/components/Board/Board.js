@@ -21,7 +21,7 @@ const Board = () => {
     });
   }, []);
 
-  const renderGrid = () => (error ? (
+  const renderBoard = () => (error ? (
     <>
       <p>Sorry something went wrong...</p>
     </>
@@ -36,9 +36,9 @@ const Board = () => {
   ));
 
   return (
-    <div>
-      { renderGrid() }
-    </div>
+    <>
+      { renderBoard() }
+    </>
   );
 };
 
