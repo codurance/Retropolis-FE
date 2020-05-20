@@ -1,4 +1,4 @@
-const dummyData = require('../boardsApiMock.json');
+const dummyData = require('./boardsApiMock.json');
 
 let fail = false;
 
