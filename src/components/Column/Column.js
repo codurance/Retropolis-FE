@@ -8,7 +8,7 @@ import * as PropTypes from 'prop-types';
 import CardItem from '../CardItem/CardItem';
 import CardForm from '../CardForm/CardForm';
 
-const Column = ({ columnProp, addNewCardToBoard }) => {
+const Column = ({ columnProp, addNewCardToBoard, user }) => {
   const [cardFormEdit, setCardFormEdit] = useState(false);
   const renderForm = () => (cardFormEdit
     ? (
@@ -16,6 +16,7 @@ const Column = ({ columnProp, addNewCardToBoard }) => {
         handleCancelButton={setCardFormEdit}
         handleAddCard={addNewCardToBoard}
         colId={columnProp.id}
+        user={user}
       />
     )
     : (
@@ -51,9 +52,15 @@ const columnType = PropTypes.shape({
   cards: PropTypes.array
 });
 
+const user = PropTypes.shape({
+  username: PropTypes.string,
+  token: PropTypes.string
+});
+
 Column.propTypes = {
   columnProp: columnType.isRequired,
-  addNewCardToBoard: PropTypes.func.isRequired
+  addNewCardToBoard: PropTypes.func.isRequired,
+  user: user.isRequired
 };
 
 export default Column;
