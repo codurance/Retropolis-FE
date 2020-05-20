@@ -12,6 +12,8 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
 
   const handleAddCardButton = () => {
     handleCancelButton();
+    if (newCardText.length === 0 || !colId) return;
+
     saveCard({ columnId: colId, text: newCardText }).then((newCard) => {
       handleAddCard(newCard);
     });
@@ -26,6 +28,7 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
+            required
             label="Enter a title for this card..."
             fullWidth
             autoFocus
