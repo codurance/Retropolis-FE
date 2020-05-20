@@ -13,12 +13,21 @@ const Board = () => {
     setBoard({ ...board, newState });
   };
 
-  useEffect(() => {
+  const fetchBoard = () => {
     getBoards().then((boardResponse) => {
       setBoard(boardResponse);
+      setError(false);
     }).catch(() => {
       setError(true);
     });
+  };
+
+  useEffect(() => {
+    fetchBoard();
+    const refreshBoardInterval = setInterval(() => {
+      fetchBoard();
+    }, 2000);
+    return () => clearInterval(refreshBoardInterval);
   }, []);
 
   const renderBoard = () => (error ? (
