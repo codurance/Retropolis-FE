@@ -17,7 +17,6 @@ const Board = () => {
     getBoards().then((boardResponse) => {
       setBoard(boardResponse);
     }).catch((e) => {
-      console.log(e.message);
       setError(true);
     });
   }, []);
