@@ -18,6 +18,6 @@ function renderCardItem(args) {
 }
 
 it('shows the user name on the card', () => {
-  const { getByText } = renderCardItem({ cardProp: { userName: 'Tom' } });
-  getByText('Tom');
+  const { getByText } = renderCardItem({ cardProp: { userName: 'John Doe' } });
+  getByText('John Doe');
 });
