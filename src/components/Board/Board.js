@@ -16,7 +16,7 @@ const Board = () => {
   useEffect(() => {
     getBoards().then((boardResponse) => {
       setBoard(boardResponse);
-    }).catch((e) => {
+    }).catch(() => {
       setError(true);
     });
   }, []);
