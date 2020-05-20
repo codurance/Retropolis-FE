@@ -27,18 +27,21 @@ function renderColumn(args) {
 }
 
 it('should render the column', () => {
-  const { getByText } = renderColumn();
-  getByText('Any title');
+  const title = 'Any title';
+  const { getByText } = renderColumn({ title });
+  getByText(title);
 });
 
 it('should render one card in column', () => {
-  const { getByText } = renderColumn();
-  getByText('Any text');
+  const title = 'Any text';
+  const { getByText } = renderColumn({ title });
+  getByText(title);
 });
 
 it('should render add card button', () => {
-  const { getByText } = renderColumn();
-  getByText('Add a card');
+  const title = 'Add a card';
+  const { getByText } = renderColumn({ title });
+  getByText(title);
 });
 
 it('should render a form when add card button is clicked', () => {

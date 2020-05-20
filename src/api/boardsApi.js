@@ -1,9 +1,6 @@
-const fetch = require('node-fetch');
+import { handleResponse } from './helpers';
 
-function handleResponse(response) {
-  if (response.ok) return response.json();
-  throw new Error(response.text());
-}
+const fetch = require('node-fetch');
 
 async function getBoards() {
   const response = await fetch(`${process.env.API_URL}/board`);
