@@ -12,11 +12,10 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
 
   const handleAddCardButton = () => {
     handleCancelButton();
-    if (newCardText.length === 0 || !colId) return;
 
     saveCard({ columnId: colId, text: newCardText }).then((newCard) => {
       handleAddCard(newCard);
-    });
+    }).catch(() => handleCancelButton());
   };
 
   const handleChangeText = (e) => {
