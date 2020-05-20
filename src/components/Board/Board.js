@@ -23,6 +23,7 @@ const Board = () => {
   };
 
   useEffect(() => {
+    fetchBoard();
     const refreshBoardInterval = setInterval(() => {
       fetchBoard();
     }, 2000);
