@@ -7,7 +7,17 @@ afterEach(cleanup);
 
 function renderColumn(args) {
   const defaultProps = {
-    cards: [],
+    columnProp: {
+      id: 1,
+      title: 'Any title',
+      cards: [
+        {
+          id: 1,
+          columnId: 1,
+          text: 'Any text'
+        }
+      ]
+    },
     addNewCardToBoard: () => {
     }
   };
@@ -17,13 +27,21 @@ function renderColumn(args) {
 }
 
 it('should render the column', () => {
-  const { getByText } = renderColumn();
-  getByText('Went well');
+  const title = 'Any title';
+  const { getByText } = renderColumn({ title });
+  getByText(title);
+});
+
+it('should render one card in column', () => {
+  const title = 'Any text';
+  const { getByText } = renderColumn({ title });
+  getByText(title);
 });
 
 it('should render add card button', () => {
-  const { getByText } = renderColumn();
-  getByText('Add a card');
+  const title = 'Add a card';
+  const { getByText } = renderColumn({ title });
+  getByText(title);
 });
 
 it('should render a form when add card button is clicked', () => {

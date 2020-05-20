@@ -1,0 +1,52 @@
+{
+  "columns": [
+    {
+      "id": 1,
+      "title": "Start",
+      "cards": [
+        {
+          "id": 1,
+          "columnId": 1,
+          "text": "hello"
+        },
+        {
+          "id": 2,
+          "columnId": 1,
+          "text": "hello2"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Stop",
+      "cards": [
+        {
+          "id": 3,
+          "columnId": 2,
+          "text": "stpo hello"
+        },
+        {
+          "id": 4,
+          "columnId": 2,
+          "text": "stop hello2"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Continue",
+      "cards": [
+        {
+          "id": 5,
+          "columnId": 3,
+          "text": "hello from con"
+        },
+        {
+          "id": 6,
+          "columnId": 3,
+          "text": "hello2 continue"
+        }
+      ]
+    }
+  ]
+}

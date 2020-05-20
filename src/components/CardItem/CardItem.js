@@ -12,14 +12,14 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const CardItem = ({ card }) => {
+const CardItem = ({ cardProp }) => {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography gutterBottom>
-          { card.text }
+          { cardProp.text }
         </Typography>
       </CardContent>
     </Card>
@@ -32,7 +32,7 @@ const cardType = PropTypes.shape({
 });
 
 CardItem.propTypes = {
-  card: cardType.isRequired
+  cardProp: cardType.isRequired
 };
 
 export default CardItem;
