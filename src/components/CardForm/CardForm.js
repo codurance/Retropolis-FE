@@ -21,6 +21,12 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
     setNewCardText(e.target.value);
   };
 
+  const onKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleAddCardButton();
+    }
+  };
+
   return (
     <form onSubmit={() => handleAddCardButton()}>
       <Grid container spacing={3}>
@@ -28,7 +34,9 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
           <TextField
             label="Enter a title for this card..."
             fullWidth
+            multiline
             autoFocus
+            onKeyPress={(e) => onKeyPress(e)}
             style={{ backgroundColor: 'white' }}
             variant="outlined"
             value={newCardText}
