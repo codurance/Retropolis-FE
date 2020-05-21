@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 import * as PropTypes from 'prop-types';
-import { saveCard } from '../../api/cardsApi';
+import saveCard from '../../api/cardsApi';
 import { getUsername } from '../../services/loginService';
 
 const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
