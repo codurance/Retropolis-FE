@@ -4,7 +4,9 @@ const fetch = require('node-fetch');
 
 function handleResponse(response) {
   if (response.ok) return response.json();
-  if (response.status === 401) { throw new Error('Not authorized'); }
+  if (response.status === 401) {
+    throw new Error(response);
+  }
   throw new Error(response.text());
 }
 
