@@ -17,6 +17,13 @@ module.exports = {
       favicon: './public/favicon.ico'
     })
   ],
+  devServer: {
+    proxy: {
+      '/': {
+        target: 'http://localhost:5000'
+      }
+    }
+  },
   module: {
     rules: [
       {

@@ -4,7 +4,9 @@ const fetch = require('node-fetch');
 
 function handleResponse(response) {
   if (response.ok) return response.json();
-  if (response.status === 401) { throw new Error('Not authorized'); }
+  if (response.status === 401) {
+    throw response;
+  }
   throw new Error(response.text());
 }
 
@@ -19,7 +21,7 @@ async function fetchWrapper({
   if (body) {
     payload.body = JSON.stringify(body);
   }
-  const response = await fetch(process.env.API_URL + endpoint, payload);
+  const response = await fetch(endpoint, payload);
   return handleResponse(response);
 }
 

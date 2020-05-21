@@ -1,10 +1,11 @@
+import * as PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Column from '../Column/Column';
 import { getBoards } from '../../api/boardsApi';
 import { addNewCard } from '../../services/boardService';
 
-const Board = () => {
+const Board = ({ setAuth }) => {
   const [board, setBoard] = useState({ columns: [] });
   const [error, setError] = useState(false);
   const addCard = (newCard) => {
@@ -17,8 +18,12 @@ const Board = () => {
     getBoards().then((boardResponse) => {
       setBoard(boardResponse);
       setError(false);
-    }).catch(() => {
-      setError(true);
+    }).catch((err) => {
+      if (err.status === 401) {
+        setAuth(false);
+      } else {
+        setError(true);
+      }
     });
   };
 
@@ -49,6 +54,10 @@ const Board = () => {
       { renderBoard() }
     </>
   );
+};
+
+Board.propTypes = {
+  setAuth: PropTypes.func.isRequired
 };
 
 export default Board;
