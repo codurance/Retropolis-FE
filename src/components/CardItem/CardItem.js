@@ -4,6 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import CardActions from '@material-ui/core/CardActions';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -22,13 +23,17 @@ const CardItem = ({ cardProp }) => {
           { cardProp.text }
         </Typography>
       </CardContent>
+      <CardActions style={{ float: 'right' }}>
+        { cardProp.userName }
+      </CardActions>
     </Card>
   );
 };
 
 const cardType = PropTypes.shape({
   text: PropTypes.string,
-  id: PropTypes.number
+  id: PropTypes.number,
+  userName: PropTypes.string
 });
 
 CardItem.propTypes = {
