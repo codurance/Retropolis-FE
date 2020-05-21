@@ -1,5 +1,5 @@
 import { expect, it } from '@jest/globals';
-import saveCard from './cardsApi';
+import { saveCard } from './cardsApi';
 
 it('throws an error when text doesn\'t exist', (done) => {
   expect.assertions(1);

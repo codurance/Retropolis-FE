@@ -3,10 +3,9 @@ export function successLogin(googleResponse) {
   sessionStorage.setItem('userToken', googleResponse.tokenId);
 }
 
-export function failLogin(googleResponse) {
+export function failLogin() {
   sessionStorage.removeItem('username');
   sessionStorage.removeItem('userToken');
-  console.log(googleResponse);
 }
 
 export function getUsername() {

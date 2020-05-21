@@ -5,12 +5,12 @@ function invalid(card) {
         || card.columnId === null || card.columnId === undefined);
 }
 
-export default function saveCard(card) {
-  if (invalid(card)) {
-    return new Promise(() => {
-      throw new Error('Invalid card request');
-    });
-  }
+async function invalidError() {
+  throw new Error('Invalid card request');
+}
+
+export const saveCard = (card) => {
+  if (invalid(card)) return invalidError();
 
   return fetchWrapper({ endpoint: '/cards', method: 'POST', body: card });
-}
+};
