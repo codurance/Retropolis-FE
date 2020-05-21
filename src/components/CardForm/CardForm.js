@@ -9,12 +9,15 @@ import { saveCard } from '../../api/cardsApi';
 
 const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
   const [newCardText, setNewCardText] = useState('');
+  const [error, setError] = useState(false);
 
-  const handleAddCardButton = () => {
-    handleCancelButton();
-    saveCard({ columnId: colId, text: newCardText, userName: 'John Doe' }).then((newCard) => {
+  const handleAddCardButton = (e) => {
+    e.preventDefault();
+    saveCard({ columnId: colId, text: newCardText, userName: 'John Doe'  }).then((newCard) => {
+      setError(false);
+      handleCancelButton();
       handleAddCard(newCard);
-    });
+    }).catch(() => setError(true));
   };
 
   const handleChangeText = (e) => {
@@ -23,15 +26,17 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
 
   const onKeyPress = (event) => {
     if (event.key === 'Enter') {
-      handleAddCardButton();
+      handleAddCardButton(event);
     }
   };
 
   return (
-    <form onSubmit={() => handleAddCardButton()}>
+    <form onSubmit={(e) => handleAddCardButton(e)}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
+            required
+            error={error}
             label="Enter a title for this card..."
             fullWidth
             multiline
