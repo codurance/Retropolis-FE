@@ -10,7 +10,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.API_URL': JSON.stringify('http://localhost:5000'),
-      'process.env.GOOGLE_AUTH_CLIENT_ID': JSON.stringify('737986592333-avqc5vceiv50h5lc7rp3269h00rrvjgo.apps.googleusercontent.com')
+      'process.env.GOOGLE_AUTH_CLIENT_ID': JSON.stringify(process.env.GOOGLE_AUTH_CLIENT_ID)
     }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
