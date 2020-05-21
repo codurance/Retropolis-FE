@@ -17,6 +17,14 @@ it('throws an error when text is empty', (done) => {
   });
 });
 
+it('throws an error when text is only spaces', (done) => {
+  expect.assertions(1);
+  saveCard({ text: '  ', columnId: 1 }).catch((err) => {
+    expect(err.message).toEqual('Invalid card request');
+    done();
+  });
+});
+
 it('throws an error when columnId doesn\'t exist', (done) => {
   expect.assertions(1);
   saveCard({ text: 'hello' }).catch((err) => {
