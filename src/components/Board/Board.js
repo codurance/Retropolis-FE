@@ -37,7 +37,7 @@ const Board = () => {
   ) : (
     <Grid container spacing={3}>
       {board.columns.map((column) => (
-        <Grid item xs={3} key={column.id}>
+        <Grid item xs={12} sm={3} key={column.id}>
           <Column key={column.id} columnProp={column} addNewCardToBoard={addCard} />
         </Grid>
       ))}
