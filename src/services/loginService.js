@@ -9,6 +9,10 @@ export function failLogin(googleResponse) {
   console.log(googleResponse);
 }
 
-export function currentUsername() {
+export function getUsername() {
   return sessionStorage.getItem('username');
+}
+
+export function getToken() {
+  return sessionStorage.getItem('userToken');
 }

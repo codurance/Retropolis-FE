@@ -1,17 +1,4 @@
-const fetch = require('node-fetch');
+import fetchWrapper from './fetchApi';
 
-function handleResponse(response) {
-  if (response.ok) return response.json();
-  throw new Error(response.text());
-}
-
-async function saveCard(card) {
-  const response = await fetch(`${process.env.API_URL}/cards`, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(card)
-  });
-  return handleResponse(response);
-}
-
-module.exports = { saveCard };
+// eslint-disable-next-line import/prefer-default-export
+export const saveCard = (card) => fetchWrapper({ endpoint: '/cards', method: 'POST', body: card });

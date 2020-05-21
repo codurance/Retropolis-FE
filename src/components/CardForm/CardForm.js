@@ -6,7 +6,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 import * as PropTypes from 'prop-types';
 import { saveCard } from '../../api/cardsApi';
-import { currentUsername } from '../../services/loginService';
+import { getUsername } from '../../services/loginService';
 
 const CardForm = ({
   colId, handleCancelButton, handleAddCard
@@ -15,7 +15,7 @@ const CardForm = ({
 
   const handleAddCardButton = () => {
     handleCancelButton();
-    saveCard({ columnId: colId, text: newCardText, userName: currentUsername() })
+    saveCard({ columnId: colId, text: newCardText, userName: getUsername() })
       .then((newCard) => handleAddCard(newCard));
   };
 
