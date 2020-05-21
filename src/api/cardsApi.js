@@ -1,24 +1,16 @@
-const fetch = require('node-fetch');
-
-function handleResponse(response) {
-  if (response.ok) return response.json();
-  throw new Error(response.text());
-}
+import fetchWrapper from './fetchApi';
 
 function invalid(card) {
   return (!card.text || !card.text.trim().length
-      || card.columnId === null || card.columnId === undefined);
+        || card.columnId === null || card.columnId === undefined);
 }
 
-async function saveCard(card) {
-  if (invalid(card)) throw new Error('Invalid card request');
-
-  const response = await fetch(`${process.env.API_URL}/cards`, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(card)
-  });
-  return handleResponse(response);
+async function invalidError() {
+  throw new Error('Invalid card request');
 }
 
-module.exports = { saveCard };
+export const saveCard = (card) => {
+  if (invalid(card)) return invalidError();
+
+  return fetchWrapper({ endpoint: '/cards', method: 'POST', body: card });
+};

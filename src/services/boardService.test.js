@@ -1,5 +1,5 @@
 import { beforeEach, expect, it } from '@jest/globals';
-import { addNewCard } from './BoardService';
+import { addNewCard } from './boardService';
 
 
 let board = {};
