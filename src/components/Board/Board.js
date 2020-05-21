@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Column from '../Column/Column';
-import getBoards from '../../api/boardsApi';
+import { getBoards } from '../../api/boardsApi';
 import { addNewCard } from '../../services/boardService';
 
 const Board = () => {
