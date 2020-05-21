@@ -10,7 +10,7 @@ const Login = ({ setAuth }) => {
   };
 
   return (
-    <div style={{ width: '100%', height: '100%', margin: 'auto 50%' }}>
+    <div className="login">
       <p>Please log in</p>
       <GoogleLogin
         clientId={process.env.GOOGLE_AUTH_CLIENT_ID}
