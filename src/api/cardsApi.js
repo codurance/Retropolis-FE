@@ -6,7 +6,8 @@ function handleResponse(response) {
 }
 
 function invalid(card) {
-  return (!card.text || !card.text.trim().length || card.columnId === null || card.columnId === undefined);
+  return (!card.text || !card.text.trim().length
+      || card.columnId === null || card.columnId === undefined);
 }
 
 async function saveCard(card) {
