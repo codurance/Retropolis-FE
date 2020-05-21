@@ -21,7 +21,7 @@ async function fetchWrapper({
   if (body) {
     payload.body = JSON.stringify(body);
   }
-  const response = await fetch(endpoint, payload);
+  const response = await fetch(process.env.API_URL + endpoint, payload);
   return handleResponse(response);
 }
 
