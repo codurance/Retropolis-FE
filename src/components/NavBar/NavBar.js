@@ -3,17 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import GoogleLogin from 'react-google-login';
-
-function successLogin(googleResponse) {
-  sessionStorage.setItem('username', googleResponse.profileObj.givenName);
-  sessionStorage.setItem('userToken', googleResponse.tokenId);
-}
-
-function failLogin(googleResponse) {
-  sessionStorage.removeItem('username');
-  sessionStorage.removeItem('userToken');
-  console.log(googleResponse);
-}
+import { failLogin, successLogin } from '../../services/loginService';
 
 const NavBar = () => (
   <AppBar position="static" style={{ marginBottom: '10px' }}>
