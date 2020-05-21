@@ -3,9 +3,7 @@ import { saveCard } from './cardsApi';
 
 it('throws an error when text doesn\'t exist', (done) => {
   expect.assertions(1);
-  saveCard({ columnId: 1 }).then((res) => {
-    console.log(res);
-  }).catch((err) => {
+  saveCard({ columnId: 1 }).catch((err) => {
     expect(err.message).toEqual('Invalid card request');
     done();
   });
