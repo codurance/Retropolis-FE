@@ -1,4 +1,5 @@
 import fetchWrapper from './fetchApi';
 
-// eslint-disable-next-line import/prefer-default-export
-export const getBoards = () => fetchWrapper({ endpoint: '/board' });
+const getBoards = () => fetchWrapper({ endpoint: '/board' });
+
+module.exports = { getBoards };
