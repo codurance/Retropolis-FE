@@ -21,8 +21,9 @@ const Board = ({ setAuth }) => {
     }).catch((err) => {
       if (err.status === 401) {
         setAuth(false);
+      } else {
+        setError(true);
       }
-      setError(true);
     });
   };
 
