@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
-import * as PropTypes from 'prop-types';
 import Column from '../Column/Column';
 import { getBoards } from '../../api/boardsApi';
 import { addNewCard } from '../../services/BoardService';
 
-const Board = ({ user }) => {
+const Board = () => {
   const [board, setBoard] = useState({ columns: [] });
   const [error, setError] = useState(false);
   const addCard = (newCard) => {
@@ -39,7 +38,7 @@ const Board = ({ user }) => {
     <Grid container spacing={3}>
       {board.columns.map((column) => (
         <Grid item xs={12} sm={3} key={column.id}>
-          <Column key={column.id} columnProp={column} addNewCardToBoard={addCard} user={user} />
+          <Column key={column.id} columnProp={column} addNewCardToBoard={addCard} />
         </Grid>
       ))}
     </Grid>
@@ -50,15 +49,6 @@ const Board = ({ user }) => {
       { renderBoard() }
     </>
   );
-};
-
-const user = PropTypes.shape({
-  username: PropTypes.string,
-  token: PropTypes.string
-});
-
-Board.propTypes = {
-  user: user.isRequired
 };
 
 export default Board;

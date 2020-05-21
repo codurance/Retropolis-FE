@@ -8,13 +8,13 @@ import * as PropTypes from 'prop-types';
 import { saveCard } from '../../api/cardsApi';
 
 const CardForm = ({
-  colId, handleCancelButton, handleAddCard, user
+  colId, handleCancelButton, handleAddCard
 }) => {
   const [newCardText, setNewCardText] = useState('');
 
   const handleAddCardButton = () => {
     handleCancelButton();
-    saveCard({ columnId: colId, text: newCardText, username: user.username }).then((newCard) => {
+    saveCard({ columnId: colId, text: newCardText, userName: sessionStorage.getItem('username') }).then((newCard) => {
       handleAddCard(newCard);
     });
   };
@@ -68,16 +68,10 @@ const CardForm = ({
   );
 };
 
-const user = PropTypes.shape({
-  username: PropTypes.string,
-  token: PropTypes.string
-});
-
 CardForm.propTypes = {
   colId: PropTypes.number.isRequired,
   handleCancelButton: PropTypes.func.isRequired,
-  handleAddCard: PropTypes.func.isRequired,
-  user: user.isRequired
+  handleAddCard: PropTypes.func.isRequired
 };
 
 export default CardForm;
