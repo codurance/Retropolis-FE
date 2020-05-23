@@ -1,4 +1,4 @@
-# Retropolis-FE [![codurance](https://circleci.com/gh/codurance/Retropolis-FE.svg?style=shield)](https://github.com/codurance/Retropolis-FE) [![Known Vulnerabilities](https://snyk.io/test/github/codurance/Retropolis-FE/badge.svg?targetFile=package.json)](https://snyk.io/test/github/codurance/Retropolis-FE?targetFile=package.json)
+# Retropolis-FE [![codurance](https://circleci.com/gh/codurance/Retropolis-FE.svg?style=shield)](https://github.com/codurance/Retropolis-FE) [![Known Vulnerabilities](https://snyk.io/test/github/codurance/Retropolis-FE/badge.svg?targetFile=package.json)](https://snyk.io/test/github/codurance/Retropolis-FE?targetFile=package.json) [![codecov](https://codecov.io/gh/codurance/Retropolis-FE/branch/master/graph/badge.svg)](https://codecov.io/gh/codurance/Retropolis-FE)
 
 
 
