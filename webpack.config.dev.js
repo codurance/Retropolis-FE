@@ -13,6 +13,7 @@ module.exports = {
       'process.env.GOOGLE_AUTH_CLIENT_ID': JSON.stringify(process.env.GOOGLE_AUTH_CLIENT_ID)
     }),
     new HtmlWebpackPlugin({
+      title: 'Retropolis',
       template: 'public/index.html',
       favicon: './public/favicon.ico'
     })
