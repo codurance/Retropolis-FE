@@ -1,10 +1,11 @@
-import { getToken } from '../services/loginService';
+import { failLogin, getToken } from '../services/loginService';
 
 const fetch = require('node-fetch');
 
 function handleResponse(response) {
   if (response.ok) return response.json();
   if (response.status === 401) {
+    failLogin();
     throw response;
   }
   throw new Error(response.text());
