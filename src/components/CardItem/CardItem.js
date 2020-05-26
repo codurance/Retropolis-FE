@@ -8,6 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import { ThumbUp, ThumbUpOutlined } from '@material-ui/icons';
 import { sendUpVote } from '../../api/cardsApi';
+import { getUsername } from '../../services/loginService';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -37,18 +38,20 @@ const useStyles = makeStyles(() => ({
 
 const CardItem = ({ cardProp }) => {
   const classes = useStyles();
-  const [voted, setVoted] = useState(false);
-  const [votes, setVotes] = useState(0);
+  const userName = getUsername();
+  const [voters, setVoters] = useState([]);
 
   function upVoteCard() {
-    const voteInc = votes + 1;
-    setVoted(true);
-    setVotes(voteInc);
+    const currentVoters = [...voters];
+    setVoters([...currentVoters, userName]);
 
-    sendUpVote(cardProp.id).catch(() => {
-      setVoted(false);
-      setVotes(voteInc - 1);
+    sendUpVote(cardProp.id, userName).catch(() => {
+      setVoters(currentVoters);
     });
+  }
+
+  function haveVoted() {
+    return voters.includes(userName);
   }
 
   return (
@@ -62,13 +65,13 @@ const CardItem = ({ cardProp }) => {
         { cardProp.userName }
       </CardActions>
       <CardActions disableSpacing className={classes.upVote}>
-        <span className={classes.upVoteCounter}>{ votes }</span>
+        <span className={classes.upVoteCounter}>{ voters.length }</span>
         <IconButton
-          disabled={voted}
+          disabled={haveVoted()}
           size="small"
           onClick={() => upVoteCard()}
         >
-          {voted
+          {haveVoted()
             ? <ThumbUp fontSize="small" />
             : <ThumbUpOutlined fontSize="small" />}
         </IconButton>
