@@ -38,20 +38,20 @@ const useStyles = makeStyles(() => ({
 
 const CardItem = ({ cardProp }) => {
   const classes = useStyles();
-  const userName = getUsername();
+  const username = getUsername();
   const [voters, setVoters] = useState([]);
 
   function upVoteCard() {
     const currentVoters = [...voters];
-    setVoters([...currentVoters, userName]);
+    setVoters([...currentVoters, username]);
 
-    sendUpVote(cardProp.id, userName).catch(() => {
+    sendUpVote(cardProp.id, username).catch(() => {
       setVoters(currentVoters);
     });
   }
 
   function haveVoted() {
-    return voters.includes(userName);
+    return voters.includes(username);
   }
 
   return (
@@ -62,7 +62,7 @@ const CardItem = ({ cardProp }) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.author}>
-        { cardProp.userName }
+        { cardProp.username }
       </CardActions>
       <CardActions disableSpacing className={classes.upVote}>
         <span className={classes.upVoteCounter}>{ voters.length }</span>
@@ -83,7 +83,7 @@ const CardItem = ({ cardProp }) => {
 const cardType = PropTypes.shape({
   text: PropTypes.string,
   id: PropTypes.number,
-  userName: PropTypes.string
+  username: PropTypes.string
 });
 
 CardItem.propTypes = {

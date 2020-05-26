@@ -15,7 +15,7 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
 
   const handleAddCardButton = (e) => {
     e.preventDefault();
-    saveCard({ columnId: colId, text: newCardText, userName: getUsername() }).then((newCard) => {
+    saveCard({ columnId: colId, text: newCardText, username: getUsername() }).then((newCard) => {
       setError(false);
       handleCancelButton();
       handleAddCard(newCard);

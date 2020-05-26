@@ -13,7 +13,7 @@ function renderCardItem(args) {
     cardProp: {
       id: 0,
       text: '',
-      userName: '',
+      username: '',
       votes: 0
     }
   };
@@ -22,7 +22,7 @@ function renderCardItem(args) {
 }
 
 it('shows the user name on the card', () => {
-  const { getByText } = renderCardItem({ cardProp: { userName: 'John Doe' } });
+  const { getByText } = renderCardItem({ cardProp: { username: 'John Doe' } });
   getByText('John Doe');
 });
 
