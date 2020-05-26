@@ -10,7 +10,8 @@ function renderCardItem(args) {
     cardProp: {
       id: 0,
       text: '',
-      userName: ''
+      userName: '',
+      votes: 0
     }
   };
   const props = { ...defaultProps, ...args };
@@ -20,4 +21,9 @@ function renderCardItem(args) {
 it('shows the user name on the card', () => {
   const { getByText } = renderCardItem({ cardProp: { userName: 'John Doe' } });
   getByText('John Doe');
+});
+
+it('shows a number for the amount of votes', () => {
+  const { getByText } = renderCardItem();
+  getByText('0');
 });
