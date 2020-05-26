@@ -17,14 +17,21 @@ const useStyles = makeStyles(() => ({
   author: {
     float: 'left',
     paddingLeft: 15,
-    paddingTop: 0,
+    paddingTop: 15,
     opacity: 0.7,
     fontSize: 12,
     fontStyle: 'italic'
   },
   upVote: {
-    float: 'right',
-    paddingTop: 0
+    float: 'right'
+  },
+  upVoteCounter: {
+    paddingTop: 4,
+    fontSize: 12
+  },
+  body: {
+    paddingBottom: 0,
+    opacity: 0.7
   }
 }));
 
@@ -37,6 +44,7 @@ const CardItem = ({ cardProp }) => {
     const voteInc = votes + 1;
     setVoted(true);
     setVotes(voteInc);
+
     sendUpVote(cardProp.id).catch(() => {
       setVoted(false);
       setVotes(voteInc - 1);
@@ -45,7 +53,7 @@ const CardItem = ({ cardProp }) => {
 
   return (
     <Card className={classes.root}>
-      <CardContent>
+      <CardContent className={classes.body}>
         <Typography gutterBottom>
           { cardProp.text }
         </Typography>
@@ -53,11 +61,10 @@ const CardItem = ({ cardProp }) => {
       <CardActions className={classes.author}>
         { cardProp.userName }
       </CardActions>
-      <CardActions className={classes.upVote}>
-        { votes }
+      <CardActions disableSpacing className={classes.upVote}>
+        <span className={classes.upVoteCounter}>{ votes }</span>
         <IconButton
           disabled={voted}
-          style={{ textTransform: 'capitalize' }}
           size="small"
           onClick={() => upVoteCard()}
         >
