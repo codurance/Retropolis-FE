@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -6,7 +6,8 @@ import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
-import { ThumbUpOutlined } from '@material-ui/icons';
+import { ThumbUp, ThumbUpOutlined } from '@material-ui/icons';
+import { sendUpVote } from '../../api/cardsApi';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,12 +17,31 @@ const useStyles = makeStyles(() => ({
   author: {
     float: 'left',
     paddingLeft: 15,
-    opacity: 0.7
+    paddingTop: 0,
+    opacity: 0.7,
+    fontSize: 12,
+    fontStyle: 'italic'
+  },
+  upVote: {
+    float: 'right',
+    paddingTop: 0
   }
 }));
 
 const CardItem = ({ cardProp }) => {
   const classes = useStyles();
+  const [voted, setVoted] = useState(false);
+  const [votes, setVotes] = useState(0);
+
+  function upVoteCard() {
+    const voteInc = votes + 1;
+    setVoted(true);
+    setVotes(voteInc);
+    sendUpVote(cardProp.id).catch(() => {
+      setVoted(false);
+      setVotes(voteInc - 1);
+    });
+  }
 
   return (
     <Card className={classes.root}>
@@ -33,14 +53,17 @@ const CardItem = ({ cardProp }) => {
       <CardActions className={classes.author}>
         { cardProp.userName }
       </CardActions>
-      <CardActions style={{ float: 'right' }}>
+      <CardActions className={classes.upVote}>
+        { votes }
         <IconButton
+          disabled={voted}
           style={{ textTransform: 'capitalize' }}
           size="small"
-          onClick={() => alert('hello')}
+          onClick={() => upVoteCard()}
         >
-          { cardProp.votes }
-          <ThumbUpOutlined fontSize="small" />
+          {voted
+            ? <ThumbUp fontSize="small" />
+            : <ThumbUpOutlined fontSize="small" />}
         </IconButton>
       </CardActions>
     </Card>
