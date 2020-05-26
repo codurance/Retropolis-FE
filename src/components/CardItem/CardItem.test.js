@@ -13,8 +13,7 @@ function renderCardItem(args) {
     cardProp: {
       id: 0,
       text: '',
-      username: '',
-      votes: 0
+      username: ''
     }
   };
   const props = { ...defaultProps, ...args };
