@@ -5,11 +5,18 @@ import Typography from '@material-ui/core/Typography';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
+import IconButton from '@material-ui/core/IconButton';
+import { ThumbUpOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
   root: {
     wordBreak: 'break-all',
     marginBottom: '10px'
+  },
+  author: {
+    float: 'left',
+    paddingLeft: 15,
+    opacity: 0.7
   }
 }));
 
@@ -23,8 +30,18 @@ const CardItem = ({ cardProp }) => {
           { cardProp.text }
         </Typography>
       </CardContent>
-      <CardActions style={{ float: 'right' }}>
+      <CardActions className={classes.author}>
         { cardProp.userName }
+      </CardActions>
+      <CardActions style={{ float: 'right' }}>
+        <IconButton
+          style={{ textTransform: 'capitalize' }}
+          size="small"
+          onClick={() => alert('hello')}
+        >
+          { cardProp.votes }
+          <ThumbUpOutlined fontSize="small" />
+        </IconButton>
       </CardActions>
     </Card>
   );
