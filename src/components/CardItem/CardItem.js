@@ -69,7 +69,7 @@ const CardItem = ({ cardProp, handleDeleteCard }) => {
     <Card className={classes.root}>
       <CardContent className={classes.body}>
         <Typography gutterBottom>
-          <IconButton onClick={() => deleteCardHandler()} className={classes.deleteButton} aria-label="settings" size="small">
+          <IconButton data-test-id="delete-card-button" onClick={() => deleteCardHandler()} className={classes.deleteButton} aria-label="settings" size="small">
             <DeleteOutlinedIcon fontSize="small" />
           </IconButton>
           { cardProp.text }
@@ -82,6 +82,7 @@ const CardItem = ({ cardProp, handleDeleteCard }) => {
       <CardActions disableSpacing className={classes.upVote}>
         <span className={classes.upVoteCounter}>{ voters.length }</span>
         <IconButton
+          data-testid="upvote-card-button"
           disabled={haveVoted()}
           size="small"
           onClick={() => upVoteCard()}

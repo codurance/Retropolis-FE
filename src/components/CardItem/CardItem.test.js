@@ -14,7 +14,8 @@ function renderCardItem(args) {
       id: 0,
       text: '',
       username: ''
-    }
+    },
+    handleDeleteCard: () => {}
   };
   const props = { ...defaultProps, ...args };
   return render(<CardItem {...props} />);
@@ -31,14 +32,14 @@ it('shows a number for the amount of votes', () => {
 });
 
 it('has an up-vote button', () => {
-  const { getByRole } = renderCardItem();
-  getByRole('button');
+  const { getByTestId } = renderCardItem();
+  getByTestId('upvote-card-button');
 });
 
 it('increments the counter when you click up-vote', async () => {
   await act(async () => {
-    const { getByRole, getByText } = renderCardItem();
-    getByRole('button').click();
+    const { getByTestId, getByText } = renderCardItem();
+    getByTestId('upvote-card-button').click();
     await waitFor(() => {
       getByText('1');
     });
@@ -48,10 +49,10 @@ it('increments the counter when you click up-vote', async () => {
 it('disables the button when you click up-vote', async () => {
   expect.extend({ toBeDisabled });
   await act(async () => {
-    const { getByRole } = renderCardItem();
-    getByRole('button').click();
+    const { getByTestId } = renderCardItem();
+    getByTestId('upvote-card-button').click();
     await waitFor(() => {
-      expect(getByRole('button')).toBeDisabled();
+      expect(getByTestId('upvote-card-button')).toBeDisabled();
     });
   });
 });
