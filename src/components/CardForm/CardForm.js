@@ -5,10 +5,26 @@ import Button from '@material-ui/core/Button';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 import * as PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import { saveCard } from '../../api/cardsApi';
 import { getUsername } from '../../services/loginService';
 
+
+const useStyles = makeStyles(() => ({
+  textField: {
+    backgroundColor: 'white'
+  },
+  submitButton: {
+    textTransform: 'capitalize',
+    marginRight: '10px'
+  },
+  iconButton: {
+    textTransform: 'capitalize'
+  }
+}));
+
 const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
+  const classes = useStyles();
   const [newCardText, setNewCardText] = useState('');
   const [error, setError] = useState(false);
 
@@ -37,6 +53,7 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
+            className={classes.textField}
             required
             error={error}
             label="Enter a title for this card..."
@@ -44,7 +61,6 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
             multiline
             autoFocus
             onKeyPress={(e) => onKeyPress(e)}
-            style={{ backgroundColor: 'white' }}
             variant="outlined"
             value={newCardText}
             onChange={handleChangeText}
@@ -52,7 +68,7 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
         </Grid>
         <Grid item xs={12}>
           <Button
-            style={{ textTransform: 'capitalize', marginRight: '10px' }}
+            className={classes.submitButton}
             size="small"
             type="submit"
             color="primary"
@@ -61,7 +77,7 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
             Save card
           </Button>
           <IconButton
-            style={{ textTransform: 'capitalize' }}
+            className={classes.iconButton}
             size="small"
             onClick={() => handleCancelButton()}
           >
