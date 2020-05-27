@@ -1,5 +1,5 @@
 import { beforeEach, expect, it } from '@jest/globals';
-import { addNewCard } from './boardService';
+import { addNewCard, deleteCard } from './boardService';
 
 
 let board = {};
@@ -30,4 +30,15 @@ it('returns a new board with the new card added', () => {
   };
   const object = addNewCard(board, newCard);
   expect(object.columns[1].cards.length).toBe(1);
+});
+
+it('removes a card from the board', () => {
+  const card = {
+    id: 3,
+    columnId: 1,
+    text: 'hello again'
+  };
+  board.columns[0].cards.push(card);
+  const object = deleteCard(board, card);
+  expect(object.columns[0].cards.length).toBe(0);
 });

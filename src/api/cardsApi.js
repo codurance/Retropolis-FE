@@ -16,7 +16,7 @@ export const saveCard = (card) => {
 };
 
 
-export const deleteCard = (cardId) => {
+export const deleteCardApi = (cardId) => {
   const endpoint = `/cards/${cardId}`;
   return fetchWrapper({ endpoint, method: 'DELETE' });
 };

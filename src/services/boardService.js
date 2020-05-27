@@ -7,7 +7,7 @@ function addNewCard(board, newCard) {
 }
 
 function deleteCard(board, card) {
-  const cards = board.columns
+  const { cards } = board.columns
     .find((col) => col.id === card.columnId);
   cards.splice(cards.indexOf(card), 1);
   return board;

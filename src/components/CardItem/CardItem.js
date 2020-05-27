@@ -8,7 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import { ThumbUp, ThumbUpOutlined } from '@material-ui/icons';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import { deleteCard, sendUpVote } from '../../api/cardsApi';
+import { deleteCardApi, sendUpVote } from '../../api/cardsApi';
 import { getUsername } from '../../services/loginService';
 
 const useStyles = makeStyles(() => ({
@@ -59,7 +59,7 @@ const CardItem = ({ cardProp, handleDeleteCard }) => {
   }
 
   function deleteCardHandler() {
-    deleteCard(cardProp.id).then(() => {
+    deleteCardApi(cardProp.id).then(() => {
       handleDeleteCard(cardProp);
     }).catch(() => {
     });
@@ -69,7 +69,7 @@ const CardItem = ({ cardProp, handleDeleteCard }) => {
     <Card className={classes.root}>
       <CardContent className={classes.body}>
         <Typography gutterBottom>
-          <IconButton data-test-id="delete-card-button" onClick={() => deleteCardHandler()} className={classes.deleteButton} aria-label="settings" size="small">
+          <IconButton data-testid="delete-card-button" onClick={() => deleteCardHandler()} className={classes.deleteButton} aria-label="settings" size="small">
             <DeleteOutlinedIcon fontSize="small" />
           </IconButton>
           { cardProp.text }
