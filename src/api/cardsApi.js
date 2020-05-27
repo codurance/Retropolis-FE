@@ -15,6 +15,11 @@ export const saveCard = (card) => {
   return fetchWrapper({ endpoint: '/cards', method: 'POST', body: card });
 };
 
+
+export const deleteCard = (cardId) => {
+  return fetchWrapper({ endpoint: `/cards/${cardId}`, method: 'DELETE' });
+};
+
 export const sendUpVote = (id, username) => {
   if (!id || !username) return invalidError();
 

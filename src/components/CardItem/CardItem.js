@@ -7,7 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import { ThumbUp, ThumbUpOutlined } from '@material-ui/icons';
-import { sendUpVote } from '../../api/cardsApi';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import { deleteCard, sendUpVote } from '../../api/cardsApi';
 import { getUsername } from '../../services/loginService';
 
 const useStyles = makeStyles(() => ({
@@ -26,6 +27,9 @@ const useStyles = makeStyles(() => ({
   upVote: {
     float: 'right'
   },
+  deleteButton: {
+    float: 'right'
+  },
   upVoteCounter: {
     paddingTop: 4,
     fontSize: 12
@@ -36,7 +40,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const CardItem = ({ cardProp }) => {
+const CardItem = ({ cardProp, handleDeleteCard }) => {
   const classes = useStyles();
   const username = getUsername();
   const [voters, setVoters] = useState([]);
@@ -54,12 +58,23 @@ const CardItem = ({ cardProp }) => {
     return voters.includes(username);
   }
 
+  function deleteCardHandler() {
+    deleteCard(cardProp.id).then(() => {
+      handleDeleteCard(cardProp);
+    }).catch(() => {
+    });
+  }
+
   return (
     <Card className={classes.root}>
       <CardContent className={classes.body}>
         <Typography gutterBottom>
+          <IconButton onClick={() => deleteCardHandler()} className={classes.deleteButton} aria-label="settings" size="small">
+            <DeleteOutlinedIcon fontSize="small" />
+          </IconButton>
           { cardProp.text }
         </Typography>
+
       </CardContent>
       <CardActions className={classes.author}>
         { cardProp.username }
@@ -87,7 +102,8 @@ const cardType = PropTypes.shape({
 });
 
 CardItem.propTypes = {
-  cardProp: cardType.isRequired
+  cardProp: cardType.isRequired,
+  handleDeleteCard: PropTypes.func.isRequired
 };
 
 export default CardItem;

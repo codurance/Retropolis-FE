@@ -8,7 +8,7 @@ import * as PropTypes from 'prop-types';
 import CardItem from '../CardItem/CardItem';
 import CardForm from '../CardForm/CardForm';
 
-const Column = ({ columnProp, addNewCardToBoard }) => {
+const Column = ({ columnProp, addNewCardToBoard, deleteCardFromBoard }) => {
   const [cardFormEdit, setCardFormEdit] = useState(false);
   const renderForm = () => (cardFormEdit
     ? (
@@ -35,7 +35,13 @@ const Column = ({ columnProp, addNewCardToBoard }) => {
           {columnProp.title}
         </Typography>
 
-        {columnProp.cards.map((card) => <CardItem key={card.id} cardProp={card} />)}
+        {columnProp.cards.map((card) => (
+          <CardItem
+            key={card.id}
+            cardProp={card}
+            handleDeleteCard={deleteCardFromBoard}
+          />
+        ))}
 
         <div style={{ marginTop: '15px' }}>
           {renderForm()}
@@ -53,7 +59,8 @@ const columnType = PropTypes.shape({
 
 Column.propTypes = {
   columnProp: columnType.isRequired,
-  addNewCardToBoard: PropTypes.func.isRequired
+  addNewCardToBoard: PropTypes.func.isRequired,
+  deleteCardFromBoard: PropTypes.func.isRequired
 };
 
 export default Column;
