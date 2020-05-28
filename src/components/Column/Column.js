@@ -6,7 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import CardItem from '../CardItem/CardItem';
+import CardContainer from '../Card/CardContainer';
 import CardForm from '../CardForm/CardForm';
 
 const useStyles = makeStyles(() => ({
@@ -51,7 +51,7 @@ const Column = ({ columnProp, addNewCardToBoard, deleteCardFromBoard }) => {
         </Typography>
 
         {columnProp.cards.map((card) => (
-          <CardItem
+          <CardContainer
             key={card.id}
             cardProp={card}
             handleDeleteCard={deleteCardFromBoard}

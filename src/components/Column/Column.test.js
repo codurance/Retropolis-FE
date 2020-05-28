@@ -19,6 +19,8 @@ function renderColumn(args) {
       ]
     },
     addNewCardToBoard: () => {
+    },
+    deleteCardFromBoard: () => {
     }
   };
 
