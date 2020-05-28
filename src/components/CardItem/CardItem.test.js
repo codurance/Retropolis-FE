@@ -16,7 +16,8 @@ function renderCardItem(args) {
     cardProp: {
       id: 0,
       text: '',
-      username: ''
+      username: '',
+      voters: []
     },
     handleDeleteCard: () => {}
   };
@@ -25,7 +26,14 @@ function renderCardItem(args) {
 }
 
 it('shows the user name on the card', () => {
-  const { getByText } = renderCardItem({ cardProp: { username: 'John Doe' } });
+  const { getByText } = renderCardItem({
+    cardProp: {
+      username: 'John Doe',
+      id: 0,
+      text: '',
+      voters: []
+    }
+  });
   getByText('John Doe');
 });
 
@@ -69,7 +77,14 @@ it('removes card on click', async () => {
   jest.spyOn(service, 'deleteCardApi');
 
   await act(async () => {
-    const { getByTestId, getByText } = renderCardItem({ cardProp: { username: 'John Doe' } });
+    const { getByTestId, getByText } = renderCardItem({
+      cardProp: {
+        username: 'John Doe',
+        id: 0,
+        text: '',
+        voters: []
+      }
+    });
     getByText('John Doe');
     getByTestId('delete-card-button').click();
     await waitFor(() => {

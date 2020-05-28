@@ -7,12 +7,14 @@
         {
           "id": 1,
           "columnId": 1,
-          "text": "hello"
+          "text": "hello",
+          "voters": []
         },
         {
           "id": 2,
           "columnId": 1,
-          "text": "hello2"
+          "text": "hello2",
+          "voters": []
         }
       ]
     },
@@ -23,12 +25,14 @@
         {
           "id": 3,
           "columnId": 2,
-          "text": "stpo hello"
+          "text": "stpo hello",
+          "voters": []
         },
         {
           "id": 4,
           "columnId": 2,
-          "text": "stop hello2"
+          "text": "stop hello2",
+          "voters": []
         }
       ]
     },
@@ -39,12 +43,14 @@
         {
           "id": 5,
           "columnId": 3,
-          "text": "hello from con"
+          "text": "hello from con",
+          "voters": []
         },
         {
           "id": 6,
           "columnId": 3,
-          "text": "hello2 continue"
+          "text": "hello2 continue",
+          "voters": []
         }
       ]
     }
