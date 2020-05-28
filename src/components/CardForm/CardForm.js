@@ -23,15 +23,17 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
+const CardForm = ({
+  colId, handleCancelButton, handleAddCard, defaultText
+}) => {
   const classes = useStyles();
-  const [newCardText, setNewCardText] = useState('');
+  const [text, setText] = useState(defaultText);
   const [error, setError] = useState(false);
 
 
   const handleAddCardButton = (e) => {
     e.preventDefault();
-    saveCard({ columnId: colId, text: newCardText, username: getUsername() }).then((newCard) => {
+    saveCard({ columnId: colId, text, username: getUsername() }).then((newCard) => {
       setError(false);
       handleCancelButton();
       handleAddCard(newCard);
@@ -39,7 +41,7 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
   };
 
   const handleChangeText = (e) => {
-    setNewCardText(e.target.value);
+    setText(e.target.value);
   };
 
   const onKeyPress = (event) => {
@@ -62,7 +64,7 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
             autoFocus
             onKeyPress={(e) => onKeyPress(e)}
             variant="outlined"
-            value={newCardText}
+            value={text}
             onChange={handleChangeText}
           />
         </Grid>
@@ -89,10 +91,15 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
   );
 };
 
+CardForm.defaultProps = {
+  defaultText: ''
+};
+
 CardForm.propTypes = {
   colId: PropTypes.number.isRequired,
   handleCancelButton: PropTypes.func.isRequired,
-  handleAddCard: PropTypes.func.isRequired
+  handleAddCard: PropTypes.func.isRequired,
+  defaultText: PropTypes.string
 };
 
 export default CardForm;

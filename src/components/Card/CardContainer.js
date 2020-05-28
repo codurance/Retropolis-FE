@@ -55,6 +55,7 @@ const CardContainer = ({ cardProp, handleDeleteCard }) => {
             handleAddCard={() => {
               console.log('boom');
             }}
+            defaultText={cardProp.text}
           />
         </CardContent>
       ) : (
