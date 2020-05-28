@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const CardContainer = ({ cardProp, handleDeleteCard }) => {
+const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
   const classes = useStyles();
   const username = getUsername();
   const [voters, setVoters] = useState([]);
@@ -50,6 +50,7 @@ const CardContainer = ({ cardProp, handleDeleteCard }) => {
       {edit ? (
         <CardContent className={classes.body}>
           <EditCardForm
+            editCardToBoard={editCardToBoard}
             handleCancelButton={setEdit}
             cardId={cardProp.id}
             defaultText={cardProp.text}
@@ -79,7 +80,8 @@ const cardType = PropTypes.shape({
 
 CardContainer.propTypes = {
   cardProp: cardType.isRequired,
-  handleDeleteCard: PropTypes.func.isRequired
+  handleDeleteCard: PropTypes.func.isRequired,
+  editCardToBoard: PropTypes.func.isRequired
 };
 
 export default CardContainer;

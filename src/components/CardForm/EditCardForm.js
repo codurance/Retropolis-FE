@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const EditCardForm = ({
-  cardId, handleCancelButton, defaultText
+  cardId, handleCancelButton, defaultText, editCardToBoard
 }) => {
   const classes = useStyles();
   const [text, setText] = useState(defaultText);
@@ -31,10 +31,10 @@ const EditCardForm = ({
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    editCard(cardId, text).then((newCard) => {
+    editCard(cardId, text).then((updatedCard) => {
       setError(false);
       handleCancelButton();
-      console.log(newCard);
+      editCardToBoard(updatedCard);
     }).catch(() => setError(true));
   };
 
@@ -96,6 +96,7 @@ EditCardForm.defaultProps = {
 EditCardForm.propTypes = {
   cardId: PropTypes.number.isRequired,
   handleCancelButton: PropTypes.func.isRequired,
+  editCardToBoard: PropTypes.func.isRequired,
   defaultText: PropTypes.string
 };
 

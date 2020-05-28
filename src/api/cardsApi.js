@@ -20,7 +20,6 @@ export const saveCard = (card) => {
 };
 
 export const editCard = (id, newText) => {
-  console.log(newText);
   if (invalidUpdate(newText)) return invalidError();
 
   const endpoint = `/cards/${id}`;

@@ -21,7 +21,9 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Column = ({ columnProp, addNewCardToBoard, deleteCardFromBoard }) => {
+const Column = ({
+  columnProp, addNewCardToBoard, editCardToBoard, deleteCardFromBoard
+}) => {
   const classes = useStyles();
   const [cardFormEdit, setCardFormEdit] = useState(false);
   const renderForm = () => (cardFormEdit
@@ -53,6 +55,7 @@ const Column = ({ columnProp, addNewCardToBoard, deleteCardFromBoard }) => {
           <CardContainer
             key={card.id}
             cardProp={card}
+            editCardToBoard={editCardToBoard}
             handleDeleteCard={deleteCardFromBoard}
           />
         ))}
@@ -74,6 +77,7 @@ const columnType = PropTypes.shape({
 Column.propTypes = {
   columnProp: columnType.isRequired,
   addNewCardToBoard: PropTypes.func.isRequired,
+  editCardToBoard: PropTypes.func.isRequired,
   deleteCardFromBoard: PropTypes.func.isRequired
 };
 

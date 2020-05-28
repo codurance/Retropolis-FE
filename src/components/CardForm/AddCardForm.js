@@ -30,7 +30,6 @@ const AddCardForm = ({
   const [text, setText] = useState('');
   const [error, setError] = useState(false);
 
-
   const handleAddCardButton = (e) => {
     e.preventDefault();
     saveCard({ columnId: colId, text, username: getUsername() }).then((newCard) => {

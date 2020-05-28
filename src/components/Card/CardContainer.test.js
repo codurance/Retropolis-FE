@@ -18,7 +18,8 @@ function renderCardItem(args) {
       text: '',
       username: ''
     },
-    handleDeleteCard: () => {}
+    handleDeleteCard: () => {},
+    editCardToBoard: () => {}
   };
   const props = { ...defaultProps, ...args };
   return render(<CardContainer {...props} />);
