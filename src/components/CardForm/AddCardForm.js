@@ -23,11 +23,11 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const CardForm = ({
-  colId, handleCancelButton, handleAddCard, defaultText
+const AddCardForm = ({
+  colId, handleCancelButton, handleAddCard
 }) => {
   const classes = useStyles();
-  const [text, setText] = useState(defaultText);
+  const [text, setText] = useState('');
   const [error, setError] = useState(false);
 
 
@@ -91,15 +91,10 @@ const CardForm = ({
   );
 };
 
-CardForm.defaultProps = {
-  defaultText: ''
-};
-
-CardForm.propTypes = {
+AddCardForm.propTypes = {
   colId: PropTypes.number.isRequired,
   handleCancelButton: PropTypes.func.isRequired,
-  handleAddCard: PropTypes.func.isRequired,
-  defaultText: PropTypes.string
+  handleAddCard: PropTypes.func.isRequired
 };
 
-export default CardForm;
+export default AddCardForm;

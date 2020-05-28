@@ -5,8 +5,8 @@ import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { deleteCardApi, sendUpVote } from '../../api/cardsApi';
 import { getUsername } from '../../services/loginService';
-import CardForm from '../CardForm/CardForm';
 import CardItem from './CardItem';
+import EditCardForm from '../CardForm/EditCardForm';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -49,12 +49,9 @@ const CardContainer = ({ cardProp, handleDeleteCard }) => {
     <Card className={classes.root}>
       {edit ? (
         <CardContent className={classes.body}>
-          <CardForm
+          <EditCardForm
             handleCancelButton={setEdit}
-            colId={cardProp.columnId}
-            handleAddCard={() => {
-              console.log('boom');
-            }}
+            cardId={cardProp.id}
             defaultText={cardProp.text}
           />
         </CardContent>
