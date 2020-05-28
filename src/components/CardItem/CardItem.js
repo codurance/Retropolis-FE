@@ -43,7 +43,7 @@ const useStyles = makeStyles(() => ({
 const CardItem = ({ cardProp, handleDeleteCard }) => {
   const classes = useStyles();
   const username = getUsername();
-  const [voters, setVoters] = useState([]);
+  const [voters, setVoters] = useState(cardProp.voters);
 
   function upVoteCard() {
     const currentVoters = [...voters];
@@ -99,7 +99,8 @@ const CardItem = ({ cardProp, handleDeleteCard }) => {
 const cardType = PropTypes.shape({
   text: PropTypes.string,
   id: PropTypes.number,
-  username: PropTypes.string
+  username: PropTypes.string,
+  voters: PropTypes.array
 });
 
 CardItem.propTypes = {
