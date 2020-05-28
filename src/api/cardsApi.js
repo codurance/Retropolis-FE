@@ -24,6 +24,6 @@ export const deleteCardApi = (cardId) => {
 export const sendUpVote = (id, username) => {
   if (!id || !username) return invalidError();
 
-  const endpoint = `/cards/${id}`;
-  return fetchWrapper({ endpoint, method: 'PATCH', body: { addUpVote: username } });
+  const endpoint = `/cards/${id}/vote`;
+  return fetchWrapper({ endpoint, method: 'PATCH', body: { username, addVote: true } });
 };
