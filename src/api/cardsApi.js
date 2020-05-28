@@ -25,5 +25,5 @@ export const sendUpVote = (id, username) => {
   if (!id || !username) return invalidError();
 
   const endpoint = `/cards/${id}`;
-  return fetchWrapper({ endpoint, method: 'PATCH', body: { username } });
+  return fetchWrapper({ endpoint, method: 'PATCH', body: { addUpVote: username } });
 };
