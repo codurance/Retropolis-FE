@@ -15,9 +15,15 @@ export const saveCard = (card) => {
   return fetchWrapper({ endpoint: '/cards', method: 'POST', body: card });
 };
 
+
+export const deleteCardApi = (cardId) => {
+  const endpoint = `/cards/${cardId}`;
+  return fetchWrapper({ endpoint, method: 'DELETE' });
+};
+
 export const sendUpVote = (id, username) => {
   if (!id || !username) return invalidError();
 
-  const url = `/cards/${id}`;
-  return fetchWrapper({ endpoint: url, method: 'PATCH', body: { username } });
+  const endpoint = `/cards/${id}`;
+  return fetchWrapper({ endpoint, method: 'PATCH', body: { username } });
 };

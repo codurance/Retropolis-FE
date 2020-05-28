@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Column = ({ columnProp, addNewCardToBoard }) => {
+const Column = ({ columnProp, addNewCardToBoard, deleteCardFromBoard }) => {
   const classes = useStyles();
 
   const [cardFormEdit, setCardFormEdit] = useState(false);
@@ -50,7 +50,13 @@ const Column = ({ columnProp, addNewCardToBoard }) => {
           {columnProp.title}
         </Typography>
 
-        {columnProp.cards.map((card) => <CardItem key={card.id} cardProp={card} />)}
+        {columnProp.cards.map((card) => (
+          <CardItem
+            key={card.id}
+            cardProp={card}
+            handleDeleteCard={deleteCardFromBoard}
+          />
+        ))}
 
         <div className={classes.cardFooter}>
           {renderForm()}
@@ -68,7 +74,8 @@ const columnType = PropTypes.shape({
 
 Column.propTypes = {
   columnProp: columnType.isRequired,
-  addNewCardToBoard: PropTypes.func.isRequired
+  addNewCardToBoard: PropTypes.func.isRequired,
+  deleteCardFromBoard: PropTypes.func.isRequired
 };
 
 export default Column;
