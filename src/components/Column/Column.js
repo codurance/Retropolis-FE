@@ -6,8 +6,8 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import CardItem from '../CardItem/CardItem';
-import CardForm from '../CardForm/CardForm';
+import CardContainer from '../Card/CardContainer';
+import AddCardForm from '../CardForm/AddCardForm';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -21,13 +21,14 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Column = ({ columnProp, addNewCardToBoard, deleteCardFromBoard }) => {
+const Column = ({
+  columnProp, addNewCardToBoard, editCardToBoard, deleteCardFromBoard
+}) => {
   const classes = useStyles();
-
   const [cardFormEdit, setCardFormEdit] = useState(false);
   const renderForm = () => (cardFormEdit
     ? (
-      <CardForm
+      <AddCardForm
         handleCancelButton={setCardFormEdit}
         handleAddCard={addNewCardToBoard}
         colId={columnProp.id}
@@ -51,9 +52,10 @@ const Column = ({ columnProp, addNewCardToBoard, deleteCardFromBoard }) => {
         </Typography>
 
         {columnProp.cards.map((card) => (
-          <CardItem
+          <CardContainer
             key={card.id}
             cardProp={card}
+            editCardToBoard={editCardToBoard}
             handleDeleteCard={deleteCardFromBoard}
           />
         ))}
@@ -75,6 +77,7 @@ const columnType = PropTypes.shape({
 Column.propTypes = {
   columnProp: columnType.isRequired,
   addNewCardToBoard: PropTypes.func.isRequired,
+  editCardToBoard: PropTypes.func.isRequired,
   deleteCardFromBoard: PropTypes.func.isRequired
 };
 

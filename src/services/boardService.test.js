@@ -1,5 +1,5 @@
 import { beforeEach, expect, it } from '@jest/globals';
-import { addNewCard, deleteCard } from './boardService';
+import { addNewCard, deleteCard, updateCardText } from './boardService';
 
 
 let board = {};
@@ -33,12 +33,16 @@ it('returns a new board with the new card added', () => {
 });
 
 it('removes a card from the board', () => {
-  const card = {
-    id: 3,
-    columnId: 1,
-    text: 'hello again'
-  };
+  const card = { id: 3, columnId: 1, text: 'hello again' };
   board.columns[0].cards.push(card);
   const object = deleteCard(board, card);
   expect(object.columns[0].cards.length).toBe(0);
+});
+
+it('updates card text from the board', () => {
+  const card = { id: 3, columnId: 1, text: 'hello again' };
+  const updatedCard = { id: 3, columnId: 1, text: 'updated text' };
+  board.columns[0].cards.push(card);
+  const object = updateCardText(board, updatedCard);
+  expect(object.columns[0].cards[0].text).toEqual(updatedCard.text);
 });

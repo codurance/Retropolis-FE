@@ -5,6 +5,10 @@ function invalid(card) {
         || card.columnId === null || card.columnId === undefined);
 }
 
+function invalidUpdate(newText) {
+  return (!newText || !newText.trim().length);
+}
+
 async function invalidError() {
   throw new Error('Invalid card request');
 }
@@ -13,6 +17,13 @@ export const saveCard = (card) => {
   if (invalid(card)) return invalidError();
 
   return fetchWrapper({ endpoint: '/cards', method: 'POST', body: card });
+};
+
+export const editCard = (id, newText) => {
+  if (invalidUpdate(newText)) return invalidError();
+
+  const endpoint = `/cards/${id}`;
+  return fetchWrapper({ endpoint, method: 'PATCH', body: { newText } });
 };
 
 

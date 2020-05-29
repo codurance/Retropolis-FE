@@ -1,7 +1,7 @@
 import React from 'react';
 import { cleanup, render } from '@testing-library/react';
 import { afterEach, it } from '@jest/globals';
-import CardForm from './CardForm';
+import AddCardForm from './AddCardForm';
 
 
 afterEach(cleanup);
@@ -17,7 +17,7 @@ function renderForm(args) {
   };
 
   const props = { ...defaultProps, ...args };
-  return render(<CardForm {...props} />);
+  return render(<AddCardForm {...props} />);
 }
 
 it('renders text field', () => {

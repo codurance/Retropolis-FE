@@ -3,13 +3,18 @@ import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Column from '../Column/Column';
 import { getBoards } from '../../api/boardsApi';
-import { addNewCard, deleteCard } from '../../services/boardService';
+import { addNewCard, deleteCard, updateCardText } from '../../services/boardService';
 
 const Board = ({ setAuth }) => {
   const [board, setBoard] = useState({ columns: [] });
   const [error, setError] = useState(false);
   const addCard = (newCard) => {
     const newState = addNewCard(board, newCard);
+    setBoard({ ...board, newState });
+  };
+
+  const editCard = (updatedCard) => {
+    const newState = updateCardText(board, updatedCard);
     setBoard({ ...board, newState });
   };
 
@@ -51,6 +56,7 @@ const Board = ({ setAuth }) => {
             key={column.id}
             columnProp={column}
             addNewCardToBoard={addCard}
+            editCardToBoard={editCard}
             deleteCardFromBoard={handleDeleteCard}
           />
         </Grid>

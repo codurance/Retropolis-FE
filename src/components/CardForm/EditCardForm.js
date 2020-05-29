@@ -6,8 +6,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { saveCard } from '../../api/cardsApi';
-import { getUsername } from '../../services/loginService';
+import { editCard } from '../../api/cardsApi';
 
 
 const useStyles = makeStyles(() => ({
@@ -23,33 +22,34 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
+const EditCardForm = ({
+  cardId, handleCancelButton, defaultText, editCardToBoard
+}) => {
   const classes = useStyles();
-  const [newCardText, setNewCardText] = useState('');
+  const [text, setText] = useState(defaultText);
   const [error, setError] = useState(false);
 
-
-  const handleAddCardButton = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    saveCard({ columnId: colId, text: newCardText, username: getUsername() }).then((newCard) => {
+    editCard(cardId, text).then((updatedCard) => {
       setError(false);
       handleCancelButton();
-      handleAddCard(newCard);
+      editCardToBoard(updatedCard);
     }).catch(() => setError(true));
   };
 
   const handleChangeText = (e) => {
-    setNewCardText(e.target.value);
+    setText(e.target.value);
   };
 
   const onKeyPress = (event) => {
     if (event.key === 'Enter') {
-      handleAddCardButton(event);
+      handleFormSubmit(event);
     }
   };
 
   return (
-    <form onSubmit={(e) => handleAddCardButton(e)}>
+    <form onSubmit={(e) => handleFormSubmit(e)}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
@@ -62,7 +62,7 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
             autoFocus
             onKeyPress={(e) => onKeyPress(e)}
             variant="outlined"
-            value={newCardText}
+            value={text}
             onChange={handleChangeText}
           />
         </Grid>
@@ -89,10 +89,15 @@ const CardForm = ({ colId, handleCancelButton, handleAddCard }) => {
   );
 };
 
-CardForm.propTypes = {
-  colId: PropTypes.number.isRequired,
-  handleCancelButton: PropTypes.func.isRequired,
-  handleAddCard: PropTypes.func.isRequired
+EditCardForm.defaultProps = {
+  defaultText: ''
 };
 
-export default CardForm;
+EditCardForm.propTypes = {
+  cardId: PropTypes.number.isRequired,
+  handleCancelButton: PropTypes.func.isRequired,
+  editCardToBoard: PropTypes.func.isRequired,
+  defaultText: PropTypes.string
+};
+
+export default EditCardForm;

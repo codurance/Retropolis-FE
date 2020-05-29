@@ -6,12 +6,12 @@ import {
   act, cleanup, render, waitFor
 } from '@testing-library/react';
 import { toBeDisabled } from '@testing-library/jest-dom/matchers';
-import CardItem from './CardItem';
+import CardContainer from './CardContainer';
 import * as service from '../../api/cardsApi';
 
 afterEach(cleanup);
 
-function renderCardItem(args) {
+function renderCardContainer(args) {
   const defaultProps = {
     cardProp: {
       id: 0,
@@ -19,14 +19,15 @@ function renderCardItem(args) {
       username: '',
       voters: []
     },
-    handleDeleteCard: () => {}
+    handleDeleteCard: () => {},
+    editCardToBoard: () => {}
   };
   const props = { ...defaultProps, ...args };
-  return render(<CardItem {...props} />);
+  return render(<CardContainer {...props} />);
 }
 
 it('shows the user name on the card', () => {
-  const { getByText } = renderCardItem({
+  const { getByText } = renderCardContainer({
     cardProp: {
       username: 'John Doe',
       id: 0,
@@ -38,18 +39,18 @@ it('shows the user name on the card', () => {
 });
 
 it('shows a number for the amount of votes', () => {
-  const { getByText } = renderCardItem();
+  const { getByText } = renderCardContainer();
   getByText('0');
 });
 
 it('has an up-vote button', () => {
-  const { getByTestId } = renderCardItem();
+  const { getByTestId } = renderCardContainer();
   getByTestId('upvote-card-button');
 });
 
 it('increments the counter when you click up-vote', async () => {
   await act(async () => {
-    const { getByTestId, getByText } = renderCardItem();
+    const { getByTestId, getByText } = renderCardContainer();
     getByTestId('upvote-card-button').click();
     await waitFor(() => {
       getByText('1');
@@ -60,7 +61,7 @@ it('increments the counter when you click up-vote', async () => {
 it('disables the button when you click up-vote', async () => {
   expect.extend({ toBeDisabled });
   await act(async () => {
-    const { getByTestId } = renderCardItem();
+    const { getByTestId } = renderCardContainer();
     getByTestId('upvote-card-button').click();
     await waitFor(() => {
       expect(getByTestId('upvote-card-button')).toBeDisabled();
@@ -69,15 +70,20 @@ it('disables the button when you click up-vote', async () => {
 });
 
 it('has an delete button', () => {
-  const { getByTestId } = renderCardItem();
+  const { getByTestId } = renderCardContainer();
   getByTestId('delete-card-button');
+});
+
+it('has an edit button', () => {
+  const { getByTestId } = renderCardContainer();
+  getByTestId('edit-card-button');
 });
 
 it('removes card on click', async () => {
   jest.spyOn(service, 'deleteCardApi');
 
   await act(async () => {
-    const { getByTestId, getByText } = renderCardItem({
+    const { getByTestId, getByText } = renderCardContainer({
       cardProp: {
         username: 'John Doe',
         id: 0,
