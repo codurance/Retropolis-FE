@@ -5,13 +5,11 @@ import {
 import {
   act, cleanup, render, waitFor
 } from '@testing-library/react';
-import * as service from '../../api/cardsApi';
-import CardItem from './CardItem';
-import CardContainer from './CardContainer';
 import { toBeDisabled } from '@testing-library/jest-dom/matchers';
+import * as service from '../../api/cardsApi';
+import CardContainer from './CardContainer';
 
 afterEach(cleanup);
-
 
 function renderCardContainer(args) {
   const defaultProps = {

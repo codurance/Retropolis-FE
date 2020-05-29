@@ -3,8 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { deleteCardApi, sendUpVote } from '../../api/cardsApi';
-import { getUsername } from '../../services/loginService';
+import { deleteCardApi } from '../../api/cardsApi';
 import CardItem from './CardItem';
 import EditCardForm from '../CardForm/EditCardForm';
 

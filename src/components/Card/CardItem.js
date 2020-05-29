@@ -85,7 +85,7 @@ const CardItem = ({
         {cardProp.username}
       </CardActions>
       <CardActions disableSpacing className={classes.upVote}>
-        <span className={classes.upVoteCounter}>{cardProp.voters.length}</span>
+        <span className={classes.upVoteCounter}>{voters.length}</span>
         <IconButton
           data-testid="upvote-card-button"
           disabled={haveVoted()}
