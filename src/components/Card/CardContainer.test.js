@@ -48,11 +48,7 @@ it('removes card on click', async () => {
 
 it('disables the button when you click up-vote', async () => {
   expect.extend({ toBeDisabled });
-  let container;
-  await act(async () => {
-    container = renderCardContainer();
-  });
-  const { getByTestId } = container;
+  const { getByTestId } = renderCardContainer();
   getByTestId('upvote-card-button').click();
   await waitFor(() => {
     expect(getByTestId('upvote-card-button')).toBeDisabled();
@@ -60,11 +56,7 @@ it('disables the button when you click up-vote', async () => {
 });
 
 it('increments the counter when you click up-vote', async () => {
-  let container;
-  await act(async () => {
-    container = renderCardContainer();
-  });
-  const { getByTestId, getByText } = container;
+  const { getByTestId, getByText } = renderCardContainer();
   getByTestId('upvote-card-button').click();
   await waitFor(() => {
     getByText('1');
