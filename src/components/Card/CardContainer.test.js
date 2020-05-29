@@ -3,7 +3,7 @@ import {
   afterEach, expect, it, jest
 } from '@jest/globals';
 import {
-  act, cleanup, fireEvent, render, waitFor
+  act, cleanup, render, waitFor
 } from '@testing-library/react';
 import { toBeDisabled } from '@testing-library/jest-dom/matchers';
 import * as service from '../../api/cardsApi';
