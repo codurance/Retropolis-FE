@@ -3,8 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { deleteCardApi, sendUpVote } from '../../api/cardsApi';
-import { getUsername } from '../../services/loginService';
+import { deleteCardApi } from '../../api/cardsApi';
 import CardItem from './CardItem';
 import EditCardForm from '../CardForm/EditCardForm';
 
@@ -17,22 +16,7 @@ const useStyles = makeStyles(() => ({
 
 const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
   const classes = useStyles();
-  const username = getUsername();
-  const [voters, setVoters] = useState([]);
   const [edit, setEdit] = useState(false);
-
-  function upVoteCard() {
-    const currentVoters = [...voters];
-    setVoters([...currentVoters, username]);
-
-    sendUpVote(cardProp.id, username).catch(() => {
-      setVoters(currentVoters);
-    });
-  }
-
-  function haveVoted() {
-    return voters.includes(username);
-  }
 
   function deleteCardHandler() {
     deleteCardApi(cardProp.id).then(() => {
@@ -60,9 +44,6 @@ const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
         <CardItem
           deleteCardHandler={deleteCardHandler}
           editCardHandler={editCardHandler}
-          haveVoted={haveVoted}
-          voters={voters.length}
-          upVoteCard={upVoteCard}
           cardProp={cardProp}
         />
       )}
