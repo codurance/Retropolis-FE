@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as PropTypes from 'prop-types';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -41,7 +41,11 @@ const CardItem = ({
 }) => {
   const classes = useStyles();
   const username = getUsername();
-  const [voters, setVoters] = useState(cardProp.voters);
+  const [voters, setVoters] = useState([]);
+
+  useEffect(() => {
+    setVoters(cardProp.voters);
+  }, [cardProp.voters]);
 
   function upVoteCard() {
     const currentVoters = [...voters];
