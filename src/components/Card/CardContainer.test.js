@@ -5,11 +5,13 @@ import {
 import {
   act, cleanup, render, waitFor
 } from '@testing-library/react';
-import { toBeDisabled } from '@testing-library/jest-dom/matchers';
-import CardContainer from './CardContainer';
 import * as service from '../../api/cardsApi';
+import CardItem from './CardItem';
+import CardContainer from './CardContainer';
+import { toBeDisabled } from '@testing-library/jest-dom/matchers';
 
 afterEach(cleanup);
+
 
 function renderCardContainer(args) {
   const defaultProps = {
@@ -19,12 +21,53 @@ function renderCardContainer(args) {
       username: '',
       voters: []
     },
-    handleDeleteCard: () => {},
-    editCardToBoard: () => {}
+    editCardToBoard: () => {},
+    handleDeleteCard: () => {}
   };
   const props = { ...defaultProps, ...args };
   return render(<CardContainer {...props} />);
 }
+
+it('removes card on click', async () => {
+  jest.spyOn(service, 'deleteCardApi');
+
+  await act(async () => {
+    const { getByTestId, getByText } = renderCardContainer({
+      cardProp: {
+        username: 'John Doe',
+        id: 0,
+        text: '',
+        voters: []
+      }
+    });
+    getByText('John Doe');
+    getByTestId('delete-card-button').click();
+    await waitFor(() => {
+      expect(service.deleteCardApi).toHaveBeenCalledTimes(1);
+    });
+  });
+});
+
+it('disables the button when you click up-vote', async () => {
+  expect.extend({ toBeDisabled });
+  await act(async () => {
+    const { getByTestId } = renderCardContainer();
+    getByTestId('upvote-card-button').click();
+    await waitFor(() => {
+      expect(getByTestId('upvote-card-button')).toBeDisabled();
+    });
+  });
+});
+
+it('increments the counter when you click up-vote', async () => {
+  await act(async () => {
+    const { getByTestId, getByText } = renderCardContainer();
+    getByTestId('upvote-card-button').click();
+    await waitFor(() => {
+      getByText('1');
+    });
+  });
+});
 
 it('shows the user name on the card', () => {
   const { getByText } = renderCardContainer({
@@ -48,27 +91,6 @@ it('has an up-vote button', () => {
   getByTestId('upvote-card-button');
 });
 
-it('increments the counter when you click up-vote', async () => {
-  await act(async () => {
-    const { getByTestId, getByText } = renderCardContainer();
-    getByTestId('upvote-card-button').click();
-    await waitFor(() => {
-      getByText('1');
-    });
-  });
-});
-
-it('disables the button when you click up-vote', async () => {
-  expect.extend({ toBeDisabled });
-  await act(async () => {
-    const { getByTestId } = renderCardContainer();
-    getByTestId('upvote-card-button').click();
-    await waitFor(() => {
-      expect(getByTestId('upvote-card-button')).toBeDisabled();
-    });
-  });
-});
-
 it('has an delete button', () => {
   const { getByTestId } = renderCardContainer();
   getByTestId('delete-card-button');
@@ -77,24 +99,4 @@ it('has an delete button', () => {
 it('has an edit button', () => {
   const { getByTestId } = renderCardContainer();
   getByTestId('edit-card-button');
-});
-
-it('removes card on click', async () => {
-  jest.spyOn(service, 'deleteCardApi');
-
-  await act(async () => {
-    const { getByTestId, getByText } = renderCardContainer({
-      cardProp: {
-        username: 'John Doe',
-        id: 0,
-        text: '',
-        voters: []
-      }
-    });
-    getByText('John Doe');
-    getByTestId('delete-card-button').click();
-    await waitFor(() => {
-      expect(service.deleteCardApi).toHaveBeenCalledTimes(1);
-    });
-  });
 });
