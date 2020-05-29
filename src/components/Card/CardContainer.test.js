@@ -3,7 +3,7 @@ import {
   afterEach, expect, it, jest
 } from '@jest/globals';
 import {
-  act, cleanup, render, waitFor
+  act, cleanup, fireEvent, render, waitFor
 } from '@testing-library/react';
 import { toBeDisabled } from '@testing-library/jest-dom/matchers';
 import * as service from '../../api/cardsApi';
@@ -48,22 +48,26 @@ it('removes card on click', async () => {
 
 it('disables the button when you click up-vote', async () => {
   expect.extend({ toBeDisabled });
+  let container;
   await act(async () => {
-    const { getByTestId } = renderCardContainer();
-    getByTestId('upvote-card-button').click();
-    await waitFor(() => {
-      expect(getByTestId('upvote-card-button')).toBeDisabled();
-    });
+    container = renderCardContainer();
+  });
+  const { getByTestId } = container;
+  getByTestId('upvote-card-button').click();
+  await waitFor(() => {
+    expect(getByTestId('upvote-card-button')).toBeDisabled();
   });
 });
 
 it('increments the counter when you click up-vote', async () => {
+  let container;
   await act(async () => {
-    const { getByTestId, getByText } = renderCardContainer();
-    getByTestId('upvote-card-button').click();
-    await waitFor(() => {
-      getByText('1');
-    });
+    container = renderCardContainer();
+  });
+  const { getByTestId, getByText } = container;
+  getByTestId('upvote-card-button').click();
+  await waitFor(() => {
+    getByText('1');
   });
 });
 
