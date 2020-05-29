@@ -6,6 +6,15 @@ function addNewCard(board, newCard) {
   return board;
 }
 
+function updateCardText(board, updatedCard) {
+  const card = board.columns
+    .find((col) => col.id === updatedCard.columnId)
+    .cards
+    .find((c) => c.id === updatedCard.id);
+  card.text = updatedCard.text;
+  return board;
+}
+
 function deleteCard(board, card) {
   const { cards } = board.columns
     .find((col) => col.id === card.columnId);
@@ -13,4 +22,4 @@ function deleteCard(board, card) {
   return board;
 }
 
-module.exports = { addNewCard, deleteCard };
+module.exports = { addNewCard, deleteCard, updateCardText };

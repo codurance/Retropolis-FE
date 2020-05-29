@@ -18,8 +18,9 @@ function renderColumn(args) {
         }
       ]
     },
-    addNewCardToBoard: () => {
-    }
+    addNewCardToBoard: () => {},
+    deleteCardFromBoard: () => {},
+    editCardToBoard: () => {}
   };
 
   const props = { ...defaultProps, ...args };

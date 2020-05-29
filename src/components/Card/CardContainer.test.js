@@ -6,7 +6,7 @@ import {
   act, cleanup, render, waitFor
 } from '@testing-library/react';
 import { toBeDisabled } from '@testing-library/jest-dom/matchers';
-import CardItem from './CardItem';
+import CardContainer from './CardContainer';
 import * as service from '../../api/cardsApi';
 
 afterEach(cleanup);
@@ -18,10 +18,11 @@ function renderCardItem(args) {
       text: '',
       username: ''
     },
-    handleDeleteCard: () => {}
+    handleDeleteCard: () => {},
+    editCardToBoard: () => {}
   };
   const props = { ...defaultProps, ...args };
-  return render(<CardItem {...props} />);
+  return render(<CardContainer {...props} />);
 }
 
 it('shows the user name on the card', () => {
@@ -63,6 +64,11 @@ it('disables the button when you click up-vote', async () => {
 it('has an delete button', () => {
   const { getByTestId } = renderCardItem();
   getByTestId('delete-card-button');
+});
+
+it('has an edit button', () => {
+  const { getByTestId } = renderCardItem();
+  getByTestId('edit-card-button');
 });
 
 it('removes card on click', async () => {
