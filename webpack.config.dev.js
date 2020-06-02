@@ -19,11 +19,8 @@ module.exports = {
     })
   ],
   devServer: {
-    proxy: {
-      '/': {
-        target: 'http://localhost:5000'
-      }
-    }
+    port: 3000,
+    historyApiFallback: true
   },
   module: {
     rules: [
