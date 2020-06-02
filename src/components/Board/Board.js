@@ -2,7 +2,7 @@ import * as PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Column from '../Column/Column';
-import { getBoards } from '../../api/boardsApi';
+import { getBoard } from '../../api/boardsApi';
 import { addNewCard, deleteCard, updateCardText } from '../../services/boardService';
 
 const Board = ({ setAuth }) => {
@@ -24,7 +24,7 @@ const Board = ({ setAuth }) => {
   };
 
   const fetchBoard = () => {
-    getBoards().then((boardResponse) => {
+    getBoard().then((boardResponse) => {
       setBoard(boardResponse);
       setError(false);
     }).catch((err) => {
