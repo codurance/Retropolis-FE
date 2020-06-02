@@ -5,7 +5,7 @@ import Column from '../Column/Column';
 import { getBoard } from '../../api/boardsApi';
 import { addNewCard, deleteCard, updateCardText } from '../../services/boardService';
 
-const Board = ({ setAuth }) => {
+const Board = ({ history }) => {
   const [board, setBoard] = useState({ columns: [] });
   const [error, setError] = useState(false);
   const addCard = (newCard) => {
@@ -29,7 +29,7 @@ const Board = ({ setAuth }) => {
       setError(false);
     }).catch((err) => {
       if (err.status === 401) {
-        setAuth(false);
+        history.push('/login');
       } else {
         setError(true);
       }
@@ -71,8 +71,12 @@ const Board = ({ setAuth }) => {
   );
 };
 
+const historyType = PropTypes.shape({
+  push: PropTypes.func.isRequired
+});
+
 Board.propTypes = {
-  setAuth: PropTypes.func.isRequired
+  history: historyType.isRequired
 };
 
 export default Board;
