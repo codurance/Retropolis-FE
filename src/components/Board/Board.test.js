@@ -12,7 +12,9 @@ beforeEach(() => {
 
 function renderBoard(args) {
   const defaultProps = {
-    setAuth: () => {}
+    history: {
+      push: () => {}
+    }
   };
 
   const props = { ...defaultProps, ...args };
