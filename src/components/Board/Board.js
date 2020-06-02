@@ -71,12 +71,12 @@ const Board = ({ history }) => {
   );
 };
 
-const historyType = PropTypes.shape({
+const history = PropTypes.shape({
   push: PropTypes.func.isRequired
 });
 
 Board.propTypes = {
-  history: historyType.isRequired
+  history: history.isRequired
 };
 
 export default Board;

@@ -3,9 +3,10 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
+import * as PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { getBoards } from '../../api/boardsApi';
 
 const useStyles = makeStyles(() => ({
@@ -17,26 +18,34 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Home = () => {
+const Home = ({ history }) => {
   const classes = useStyles();
   const [fetching, setFetching] = useState(true);
   const [boards, setBoards] = useState([]);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
+  function fetchBoards() {
     getBoards().then((res) => {
       setBoards(res);
       setFetching(false);
-    }).catch(() => {
-      setError(true);
+    }).catch((err) => {
+      if (err.status === 401) {
+        history.push('/login');
+      } else {
+        setError(true);
+      }
     });
+  }
+
+  useEffect(() => {
+    fetchBoards();
   }, []);
 
   const renderBoards = () => (
     <GridList cellHeight={160} cols={4}>
       {boards.map((board) => (
         <GridListTile key={board.id} cols={1}>
-          <Link href={'/' + board.id}>
+          <Link to={'/' + board.id}>
             <Card className={classes.body}>
               <CardActionArea>
                 <CardContent className={classes.content}>
@@ -57,6 +66,14 @@ const Home = () => {
   return boards.length
     ? (renderBoards())
     : (<p>No boards to display</p>);
+};
+
+const history = PropTypes.shape({
+  push: PropTypes.func.isRequired
+});
+
+Home.propTypes = {
+  history: history.isRequired
 };
 
 export default Home;

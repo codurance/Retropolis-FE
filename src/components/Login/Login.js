@@ -12,12 +12,12 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Login = ({ setAuth }) => {
+const Login = ({ history }) => {
   const classes = useStyles();
 
   const success = (res) => {
     successLogin(res);
-    setAuth(true);
+    history.push('/');
   };
 
   return (
@@ -34,8 +34,12 @@ const Login = ({ setAuth }) => {
   );
 };
 
+const history = PropTypes.shape({
+  push: PropTypes.func.isRequired
+});
+
 Login.propTypes = {
-  setAuth: PropTypes.func.isRequired
+  history: history.isRequired
 };
 
 export default Login;
