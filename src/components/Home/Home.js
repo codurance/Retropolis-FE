@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getBoards } from '../../api/boardsApi';
 
+const renderBoards = (boards) => boards.map((board) => <p key={board.id}>{board.title}</p>);
+
 const Home = () => {
   const [fetching, setFetching] = useState(true);
   const [boards, setBoards] = useState([]);
@@ -20,7 +22,7 @@ const Home = () => {
   if (fetching) return <p>Fetching...</p>;
 
   return boards.length
-    ? (<p>{boards[0].title}</p>)
+    ? (renderBoards(boards))
     : (<p>No boards to display</p>);
 };
 

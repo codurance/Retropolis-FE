@@ -40,3 +40,14 @@ it('shows board name when it is fetched', async () => {
     getByText('First Sprint');
   });
 });
+
+it('shows boards when they are fetched', async () => {
+  setFail(false);
+  const boards = [{ id: 1, title: 'First Sprint' }, { id: 2, title: 'Second Sprint' }];
+  setMockResponse(boards);
+  const { getByText } = renderHome();
+  await waitFor(() => {
+    getByText('First Sprint');
+    getByText('Second Sprint');
+  });
+});
