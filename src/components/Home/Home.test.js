@@ -1,8 +1,8 @@
 import { jest, it } from '@jest/globals';
-import { act, render, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import React from 'react';
 import Home from './Home';
-import {setFail, setMockResponse} from '../../api/__mocks__/mockHelper';
+import { setFail, setMockResponse } from '../../api/__mocks__/mockHelper';
 
 jest.mock('../../api/boardsApi');
 
