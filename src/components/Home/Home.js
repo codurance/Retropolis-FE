@@ -17,8 +17,10 @@ const Home = () => {
 
   if (error) return <p>Failed to get boards</p>;
 
-  return fetching
-    ? (<p>Fetching...</p>)
+  if (fetching) return <p>Fetching...</p>;
+
+  return boards.length
+    ? (<p>{boards[0].title}</p>)
     : (<p>No boards to display</p>);
 };
 

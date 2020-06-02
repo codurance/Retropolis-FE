@@ -2,7 +2,7 @@ import { jest, it } from '@jest/globals';
 import { act, render, waitFor } from '@testing-library/react';
 import React from 'react';
 import Home from './Home';
-import { setFail } from '../../api/__mocks__/mockHelper';
+import {setFail, setMockResponse} from '../../api/__mocks__/mockHelper';
 
 jest.mock('../../api/boardsApi');
 
@@ -16,6 +16,7 @@ it('displays fetching screen when fetching boards', () => {
 });
 
 it('shows no boards when empty', async () => {
+  setMockResponse([]);
   const { getByText } = renderHome();
   await waitFor(() => {
     getByText('No boards to display');
@@ -27,5 +28,15 @@ it('shows error when failed to get boards', async () => {
   const { getByText } = renderHome();
   await waitFor(() => {
     getByText('Failed to get boards');
+  });
+});
+
+it('shows board name when it is fetched', async () => {
+  setFail(false);
+  const boards = [{ id: 1, title: 'First Sprint' }];
+  setMockResponse(boards);
+  const { getByText } = renderHome();
+  await waitFor(() => {
+    getByText('First Sprint');
   });
 });
