@@ -12,11 +12,9 @@ ReactDOM.render(
     <div className="App">
       <NavBar />
       <Router>
-        <div>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/:id" component={Board} />
-        </div>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route path="/:id" component={Board} />
       </Router>
     </div>
   </React.StrictMode>,

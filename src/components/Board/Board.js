@@ -29,7 +29,7 @@ const Board = ({ history }) => {
       setError(false);
     }).catch((err) => {
       if (err.status === 401) {
-        history.push('/login');
+        history.replace('/login');
       } else {
         setError(true);
       }
