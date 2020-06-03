@@ -16,8 +16,8 @@ function renderHome() {
   return render(<MemoryRouter><Home {...props} /></MemoryRouter>);
 }
 
-it('displays fetching screen when fetching boards', () => {
-  act(async () => {
+it('displays fetching screen when fetching boards', async () => {
+  await act(async () => {
     const { getByText } = renderHome();
     getByText('Fetching...');
   });
