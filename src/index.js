@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../public/index.css';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import Login from './components/Login/Login';
 import NavBar from './components/NavBar/NavBar';
 import Board from './components/Board/Board';
@@ -12,9 +12,11 @@ ReactDOM.render(
     <div className="App">
       <NavBar />
       <Router>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route path="/:id" component={Board} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route path="/:id" component={Board} />
+        </Switch>
       </Router>
     </div>
   </React.StrictMode>,
