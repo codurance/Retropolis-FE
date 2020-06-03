@@ -14,6 +14,9 @@ function renderBoard(args) {
   const defaultProps = {
     history: {
       push: () => {}
+    },
+    match: {
+      params: {}
     }
   };
 
