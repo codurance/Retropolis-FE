@@ -10,8 +10,8 @@ import Home from './components/Home/Home';
 ReactDOM.render(
   <React.StrictMode>
     <div className="App">
-      <NavBar />
       <Router>
+        <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
