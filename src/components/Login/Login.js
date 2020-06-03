@@ -17,7 +17,7 @@ const Login = ({ history }) => {
 
   const success = (res) => {
     successLogin(res);
-    history.replace('/');
+    history.push('/');
   };
 
   return (
