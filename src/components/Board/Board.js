@@ -5,7 +5,7 @@ import Column from '../Column/Column';
 import { getBoard } from '../../api/boardsApi';
 import { addNewCard, deleteCard, updateCardText } from '../../services/boardService';
 
-const Board = ({ history }) => {
+const Board = ({ history, match }) => {
   const [board, setBoard] = useState({ columns: [] });
   const [error, setError] = useState(false);
   const addCard = (newCard) => {
@@ -24,7 +24,7 @@ const Board = ({ history }) => {
   };
 
   const fetchBoard = () => {
-    getBoard().then((boardResponse) => {
+    getBoard(match.params.id).then((boardResponse) => {
       setBoard(boardResponse);
       setError(false);
     }).catch((err) => {
@@ -75,8 +75,13 @@ const history = PropTypes.shape({
   push: PropTypes.func.isRequired
 });
 
+const match = PropTypes.shape({
+  params: PropTypes.object.isRequired
+});
+
 Board.propTypes = {
-  history: history.isRequired
+  history: history.isRequired,
+  match: match.isRequired
 };
 
 export default Board;
