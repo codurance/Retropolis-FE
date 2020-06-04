@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  act, cleanup, render, waitFor
+  cleanup, render, waitFor
 } from '@testing-library/react';
 import { afterEach, it, jest } from '@jest/globals';
 import { waitForElementToBeRemoved } from '@testing-library/dom';
