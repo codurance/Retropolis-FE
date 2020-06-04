@@ -1,15 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@material-ui/core/Card';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import * as PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import AddBoard from '../AddBoard/AddBoard';
-import {getBoards} from '../../api/boardsApi';
+import { getBoards } from '../../api/boardsApi';
 
 const useStyles = makeStyles(() => ({
   body: {
@@ -25,7 +23,6 @@ const Home = ({ history }) => {
   const [fetching, setFetching] = useState(true);
   const [boards, setBoards] = useState([]);
   const [error, setError] = useState(false);
-  const [open, setOpen] = React.useState(false);
 
   function fetchBoards() {
     getBoards().then((res) => {
@@ -44,23 +41,13 @@ const Home = ({ history }) => {
     fetchBoards();
   }, []);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const renderBoards = () => (
     <>
-      <AddBoard open={open} onClose={handleClose}/>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={3} key={0}>
           <Grid container justify="center">
-            <Fab onClick={handleClickOpen} color="secondary" aria-label="Add">
-              <AddIcon/>
-            </Fab>
+            <AddBoard />
           </Grid>
         </Grid>
         {boards.map((board) => (
