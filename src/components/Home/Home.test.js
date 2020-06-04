@@ -23,16 +23,6 @@ it('displays fetching screen when fetching boards', async () => {
   });
 });
 
-it('shows no boards when empty', async () => {
-  await act(async () => {
-    setMockResponse([]);
-    const { getByText } = renderHome();
-    await waitFor(() => {
-      getByText('No boards to display');
-    });
-  });
-});
-
 it('shows error when failed to get boards', async () => {
   await act(async () => {
     setFail(true);

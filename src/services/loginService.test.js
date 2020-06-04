@@ -12,14 +12,15 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-it('should set username and token on the sessionStorage', () => {
+it('should set username, email and token on the sessionStorage', () => {
   jest.spyOn(Object.getPrototypeOf(window.localStorage), 'setItem');
-  const googleResponse = { profileObj: { givenName: 'John Doe' }, tokenId: 123 };
+  const googleResponse = { profileObj: { givenName: 'John Doe', email: 'john.doe@codurance.com' }, tokenId: 123 };
 
   successLogin(googleResponse);
 
-  expect(sessionStorage.setItem).toHaveBeenCalledTimes(2);
+  expect(sessionStorage.setItem).toHaveBeenCalledTimes(3);
   expect(sessionStorage.setItem).toHaveBeenCalledWith('username', googleResponse.profileObj.givenName);
+  expect(sessionStorage.setItem).toHaveBeenCalledWith('userEmail', googleResponse.profileObj.email);
   expect(sessionStorage.setItem).toHaveBeenLastCalledWith('userToken', googleResponse.tokenId);
 });
 

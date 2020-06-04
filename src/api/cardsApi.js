@@ -1,4 +1,4 @@
-import fetchWrapper from './fetchApi';
+import { fetchWrapper } from './fetchApi';
 
 function invalid(card) {
   return (!card.text || !card.text.trim().length
