@@ -16,3 +16,9 @@ export function setMockResponse(data) {
 export function getMockResponse() {
   return response;
 }
+
+export function mockResponse() {
+  return getFail()
+    ? Promise.reject(new Error('fail'))
+    : new Promise((resolve) => resolve(getMockResponse()));
+}
