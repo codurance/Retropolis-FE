@@ -1,11 +1,11 @@
-import fetchWrapper from './fetchApi';
+import { fetchWrapper } from './fetchApi';
 
 function invalid(board) {
   return (!board.title || !board.title.trim().length);
 }
 
 async function invalidError() {
-  throw new Error('Invalid card request');
+  throw new Error('Invalid board request');
 }
 
 export const saveBoard = (board) => {

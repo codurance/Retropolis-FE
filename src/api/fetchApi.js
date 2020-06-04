@@ -11,19 +11,17 @@ function handleResponse(response) {
   throw new Error(response.text());
 }
 
-async function fetchWrapper({
+export const fetchWrapper = async ({
   endpoint,
   token = getToken(),
   method = 'GET',
   headers = { 'Content-Type': 'application/json', Authorization: token },
   body
-} = {}) {
+} = {}) => {
   const payload = { method, headers };
   if (body) {
     payload.body = JSON.stringify(body);
   }
   const response = await fetch(process.env.API_URL + endpoint, payload);
   return handleResponse(response);
-}
-
-export default fetchWrapper;
+};
