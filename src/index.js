@@ -8,17 +8,15 @@ import Board from './components/Board/Board';
 import Home from './components/Home/Home';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <div className="App">
-      <NavBar />
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route path="/:id" component={Board} />
-        </Switch>
-      </Router>
-    </div>
-  </React.StrictMode>,
+  <div className="App">
+    <NavBar />
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route path="/:id" component={Board} />
+      </Switch>
+    </Router>
+  </div>,
   document.getElementById('root')
 );
