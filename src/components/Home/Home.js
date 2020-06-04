@@ -69,9 +69,7 @@ const Home = ({ history }) => {
 
   if (fetching) return <p>Fetching...</p>;
 
-  return boards.length
-    ? (renderBoards())
-    : (<p>No boards to display</p>);
+  return renderBoards();
 };
 
 const history = PropTypes.shape({
