@@ -40,7 +40,7 @@ const AddBoardModal = ({ history }) => {
 
   return (
     <div>
-      <Fab onClick={handleClickOpen} color="primary" aria-label="Add">
+      <Fab data-testid="add-board-button" onClick={handleClickOpen} color="primary" aria-label="Add">
         <AddIcon />
       </Fab>
       <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -61,7 +61,7 @@ const AddBoardModal = ({ history }) => {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button data-testid="cancel-add-board-button" onClick={handleClose} color="primary">
               Cancel
             </Button>
             <Button

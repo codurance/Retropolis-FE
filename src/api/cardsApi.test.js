@@ -136,12 +136,13 @@ describe('upvote card', () => {
     it('sends upvoted card with updated voters array', async () => {
       fetchApiSpy = jest.spyOn(fetchApi, 'fetchWrapper').mockImplementationOnce(() => {});
       const id = 1;
-      await sendUpVote(id, 'John Doe');
+      const username = 'John Doe';
+      await sendUpVote(id, username);
       expect(fetchApiSpy).toHaveBeenCalledWith({
-        endpoint: '/cards/1/vote',
+        endpoint: '/cards/' + id + '/vote',
         method: 'PATCH',
         body: {
-          username: 'John Doe',
+          username,
           addVote: true
         }
       });
