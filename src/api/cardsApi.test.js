@@ -9,6 +9,7 @@ import {
 } from './cardsApi';
 
 let fetchApiSpy;
+const cardUrl = '/cards';
 
 beforeEach(() => {
   fetchApiSpy = jest.spyOn(fetchApi, 'fetchWrapper').mockImplementationOnce(() => {});
@@ -68,7 +69,7 @@ describe('saveCard', () => {
       };
       await saveCard(card);
       expect(fetchApiSpy).toHaveBeenCalledWith({
-        endpoint: '/cards',
+        endpoint: cardUrl,
         method: 'POST',
         body: card
       });
@@ -109,7 +110,7 @@ describe('editCard', () => {
       const newText = 'text';
       await editCard(1, newText);
       expect(fetchApiSpy).toHaveBeenCalledWith({
-        endpoint: '/cards/1',
+        endpoint: cardUrl + '/1',
         method: 'PATCH',
         body: { newText }
       });
@@ -124,7 +125,7 @@ describe('deleteCardApi', () => {
       const cardId = 1;
       await deleteCardApi(cardId);
       expect(fetchApiSpy).toHaveBeenCalledWith({
-        endpoint: '/cards/' + cardId,
+        endpoint: cardUrl + '/' + cardId,
         method: 'DELETE'
       });
     });
@@ -139,7 +140,7 @@ describe('upvote card', () => {
       const username = 'John Doe';
       await sendUpVote(id, username);
       expect(fetchApiSpy).toHaveBeenCalledWith({
-        endpoint: '/cards/' + id + '/vote',
+        endpoint: cardUrl + '/' + id + '/vote',
         method: 'PATCH',
         body: {
           username,
