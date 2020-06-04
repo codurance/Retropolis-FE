@@ -43,7 +43,7 @@ const AddBoardModal = ({ history }) => {
       <Fab onClick={handleClickOpen} color="primary" aria-label="Add">
         <AddIcon />
       </Fab>
-      <Dialog maxWidth="sm" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <form onSubmit={(e) => handleAddBoardButton(e)}>
           <DialogTitle id="form-dialog-title">Create Board</DialogTitle>
           <DialogContent>

@@ -1,7 +1,7 @@
 export function successLogin(googleResponse) {
   sessionStorage.setItem('username', googleResponse.profileObj.givenName);
-  sessionStorage.setItem('userToken', googleResponse.tokenId);
   sessionStorage.setItem('userEmail', googleResponse.profileObj.email);
+  sessionStorage.setItem('userToken', googleResponse.tokenId);
 }
 
 export function failLogin() {
