@@ -61,12 +61,13 @@ const AddBoardModal = ({ history }) => {
             />
           </DialogContent>
           <DialogActions>
-            <Button data-testid="cancel-add-board-button" onClick={handleClose} color="primary">
+            <Button data-testid="cancel-modal-button" onClick={handleClose} color="primary">
               Cancel
             </Button>
             <Button
               type="submit"
               color="primary"
+              data-testid="add-modal-button"
             >
               Add
             </Button>

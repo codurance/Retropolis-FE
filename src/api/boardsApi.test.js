@@ -1,7 +1,7 @@
 import {
   expect, it, describe, jest, beforeEach, afterEach
 } from '@jest/globals';
-import {saveBoard, getBoard, getBoards} from './boardsApi';
+import { saveBoard, getBoard, getBoards } from './boardsApi';
 
 import * as fetchApi from './fetchApi';
 
