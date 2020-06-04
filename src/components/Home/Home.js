@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import * as PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import AddBoard from '../AddBoard/AddBoard';
+import AddBoardModal from '../AddBoardModal/AddBoardModal';
 import { getBoards } from '../../api/boardsApi';
 
 const useStyles = makeStyles(() => ({
@@ -23,7 +23,6 @@ const Home = ({ history }) => {
   const [fetching, setFetching] = useState(true);
   const [boards, setBoards] = useState([]);
   const [error, setError] = useState(false);
-
   function fetchBoards() {
     getBoards().then((res) => {
       setBoards(res);
@@ -41,13 +40,12 @@ const Home = ({ history }) => {
     fetchBoards();
   }, []);
 
-
   const renderBoards = () => (
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={3} key={0}>
           <Grid container justify="center">
-            <AddBoard />
+            <AddBoardModal history={history} />
           </Grid>
         </Grid>
         {boards.map((board) => (
