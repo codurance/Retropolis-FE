@@ -52,6 +52,7 @@ const EditCardForm = ({
           </Grid>
           <Grid item xs={12}>
             <Button
+              data-testid="save-edit-button"
               className={classes.submitButton}
               size="small"
               type="submit"

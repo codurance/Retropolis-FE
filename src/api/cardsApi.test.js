@@ -132,6 +132,17 @@ describe('deleteCardApi', () => {
 });
 
 describe('upvote card', () => {
+  describe('invalid request', () => {
+    it('throws error when id is null', async (done) => {
+      fetchApiSpy = jest.spyOn(fetchApi, 'fetchWrapper').mockImplementationOnce(() => {});
+      const username = 'John Doe';
+      sendUpVote(null, username).catch((err) => {
+        expect(err.message).toEqual('Invalid card request');
+        done();
+      });
+    });
+  });
+
   describe('valid request', () => {
     it('sends upvoted card with updated voters array', async () => {
       fetchApiSpy = jest.spyOn(fetchApi, 'fetchWrapper').mockImplementationOnce(() => {});

@@ -36,3 +36,23 @@ it('disables the button when you click up-vote', async () => {
     expect(getByTestId('upvote-card-button')).toBeDisabled();
   });
 });
+
+it('shows a number for the amount of votes', () => {
+  const { getByText } = renderCardItem();
+  getByText('0');
+});
+
+it('has an up-vote button', () => {
+  const { getByTestId } = renderCardItem();
+  getByTestId('upvote-card-button');
+});
+
+it('has a delete button', () => {
+  const { getByTestId } = renderCardItem();
+  getByTestId('delete-card-button');
+});
+
+it('has an edit button', () => {
+  const { getByTestId } = renderCardItem();
+  getByTestId('edit-card-button');
+});

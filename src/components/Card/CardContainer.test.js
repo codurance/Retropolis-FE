@@ -5,7 +5,6 @@ import {
 import {
   act, cleanup, render, waitFor
 } from '@testing-library/react';
-import { toBeDisabled } from '@testing-library/jest-dom/matchers';
 import * as service from '../../api/cardsApi';
 import CardContainer from './CardContainer';
 
@@ -15,7 +14,7 @@ function renderCardContainer(args) {
   const defaultProps = {
     cardProp: {
       id: 0,
-      text: '',
+      text: 'test',
       username: '',
       voters: []
     },
@@ -46,10 +45,6 @@ it('removes card on click', async () => {
   });
 });
 
-
-
-
-
 it('shows the user name on the card', () => {
   const { getByText } = renderCardContainer({
     cardProp: {
@@ -60,24 +55,4 @@ it('shows the user name on the card', () => {
     }
   });
   getByText('John Doe');
-});
-
-it('shows a number for the amount of votes', () => {
-  const { getByText } = renderCardContainer();
-  getByText('0');
-});
-
-it('has an up-vote button', () => {
-  const { getByTestId } = renderCardContainer();
-  getByTestId('upvote-card-button');
-});
-
-it('has an delete button', () => {
-  const { getByTestId } = renderCardContainer();
-  getByTestId('delete-card-button');
-});
-
-it('has an edit button', () => {
-  const { getByTestId } = renderCardContainer();
-  getByTestId('edit-card-button');
 });
