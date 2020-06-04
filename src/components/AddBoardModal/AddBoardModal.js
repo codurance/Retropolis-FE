@@ -39,7 +39,7 @@ const AddBoardModal = ({ history }) => {
   };
 
   return (
-    <div>
+    <>
       <Fab data-testid="add-board-button" onClick={handleClickOpen} color="primary" aria-label="Add">
         <AddIcon />
       </Fab>
@@ -74,7 +74,7 @@ const AddBoardModal = ({ history }) => {
           </DialogActions>
         </form>
       </Dialog>
-    </div>
+    </>
   );
 };
 

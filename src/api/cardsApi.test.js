@@ -14,11 +14,9 @@ const columnId = 1;
 
 beforeEach(() => {
   fetchApiSpy = jest.spyOn(fetchApi, 'fetchWrapper').mockImplementationOnce(() => {});
-
 });
 afterEach(() => {
   jest.clearAllMocks();
-
 });
 describe('saveCard', () => {
   describe('invalid request', () => {
