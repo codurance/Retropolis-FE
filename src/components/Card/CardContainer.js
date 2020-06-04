@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { deleteCardApi } from '../../api/cardsApi';
+import { deleteCardApi, editCard, sendUpVote } from '../../api/cardsApi';
 import CardItem from './CardItem';
 import EditCardForm from '../CardForm/EditCardForm';
+import { getUsername } from '../../services/loginService';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,38 +16,50 @@ const useStyles = makeStyles(() => ({
 
 const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
   const classes = useStyles();
+  const username = getUsername();
   const [edit, setEdit] = useState(false);
+  const [editError, setEditError] = useState(false);
 
   function deleteCardHandler() {
     deleteCardApi(cardProp.id).then(() => {
       handleDeleteCard(cardProp);
-    }).catch(() => {
-    });
+    }).catch(() => {});
   }
 
-  function editCardHandler() {
-    setEdit(true);
-  }
+  const editCardHandler = () => setEdit(true);
+
+  const handleFormSubmit = (e, text) => {
+    e.preventDefault();
+    editCard(cardProp.id, text).then((updatedCard) => {
+      setEditError(false);
+      setEdit(false);
+      editCardToBoard(updatedCard);
+    }).catch(() => setEditError(true));
+  };
+
+  const handleUpvoteCard = () => {
+    sendUpVote(cardProp.id, username).then(() => {});
+  };
 
   return (
     <Card className={classes.root}>
       {edit ? (
-        <CardContent className={classes.body}>
-          <EditCardForm
-            editCardToBoard={editCardToBoard}
-            handleCancelButton={setEdit}
-            cardId={cardProp.id}
-            defaultText={cardProp.text}
-          />
-        </CardContent>
+        <EditCardForm
+          handleFormSubmit={handleFormSubmit}
+          editCardToBoard={editCardToBoard}
+          handleCancelButton={setEdit}
+          error={editError}
+          cardId={cardProp.id}
+          defaultText={cardProp.text}
+        />
       ) : (
         <CardItem
+          voteCardHandler={handleUpvoteCard}
           deleteCardHandler={deleteCardHandler}
           editCardHandler={editCardHandler}
           cardProp={cardProp}
         />
       )}
-
     </Card>
   );
 };

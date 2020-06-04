@@ -46,22 +46,9 @@ it('removes card on click', async () => {
   });
 });
 
-it('disables the button when you click up-vote', async () => {
-  expect.extend({ toBeDisabled });
-  const { getByTestId } = renderCardContainer();
-  getByTestId('upvote-card-button').click();
-  await waitFor(() => {
-    expect(getByTestId('upvote-card-button')).toBeDisabled();
-  });
-});
 
-it('increments the counter when you click up-vote', async () => {
-  const { getByTestId, getByText } = renderCardContainer();
-  getByTestId('upvote-card-button').click();
-  await waitFor(() => {
-    getByText('1');
-  });
-});
+
+
 
 it('shows the user name on the card', () => {
   const { getByText } = renderCardContainer({
