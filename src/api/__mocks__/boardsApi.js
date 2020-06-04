@@ -7,3 +7,5 @@ export const getBoard = async () => (getFail() ? Promise.reject(new Error('fail'
 export const getBoards = async () => (getFail()
   ? Promise.reject(new Error('fail'))
   : new Promise((resolve) => resolve(getMockResponse())));
+
+export const saveBoard = async () => (new Promise((resolve) => resolve(getMockResponse())));
