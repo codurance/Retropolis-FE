@@ -11,10 +11,20 @@ import { getBoards } from '../../api/boardsApi';
 
 const useStyles = makeStyles(() => ({
   body: {
-    backgroundColor: '#f6f5f5'
+    backgroundColor: '#f6f5f5',
+    minHeight: '60px'
+  },
+  container: {
+    padding: '16px'
   },
   content: {
-    fontSize: 20
+    fontSize: 20,
+    textAlign: 'center',
+    padding: '20px'
+  },
+  link: {
+    color: 'white',
+    textDecoration: 'none'
   }
 }));
 
@@ -41,16 +51,12 @@ const Home = ({ history }) => {
   }, []);
 
   const renderBoards = () => (
-    <>
+    <div className={classes.container}>
+      <AddBoardModal history={history} />
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={3} key={0}>
-          <Grid container justify="center">
-            <AddBoardModal history={history} />
-          </Grid>
-        </Grid>
         {boards.map((board) => (
-          <Grid item xs={12} sm={3} key={board.id}>
-            <Link to={'/' + board.id}>
+          <Grid item xs={12} sm={2} key={board.id}>
+            <Link to={'/' + board.id} className={classes.link}>
               <Card className={classes.body}>
                 <CardActionArea>
                   <CardContent className={classes.content}>
@@ -62,7 +68,7 @@ const Home = ({ history }) => {
           </Grid>
         ))}
       </Grid>
-    </>
+    </div>
   );
 
   if (error) return <p>Failed to get boards</p>;
