@@ -22,9 +22,7 @@ it('returns the response when response is ok', () => {
 });
 
 it('throws response when status is 401', () => {
-  const mockResponse = {
-    status: 401
-  };
+  const mockResponse = { status: 401 };
 
   try {
     handleResponse(mockResponse);
