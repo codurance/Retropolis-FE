@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import * as PropTypes from 'prop-types';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -36,21 +36,10 @@ const useStyles = makeStyles(() => ({
 }));
 
 const CardItem = ({
-  cardProp, deleteCardHandler, editCardHandler, voteCardHandler
+  cardProp, deleteCardHandler, editCardHandler, upVoteCard, voters
 }) => {
   const classes = useStyles();
   const username = getUsername();
-  const [voters, setVoters] = useState([]);
-
-  useEffect(() => {
-    setVoters(cardProp.voters);
-  }, [cardProp.voters]);
-
-  function upVoteCard() {
-    const currentVoters = [...voters];
-    setVoters([...currentVoters, username]);
-    voteCardHandler();
-  }
 
   const haveVoted = () => voters.includes(username);
 
@@ -111,7 +100,8 @@ CardItem.propTypes = {
   cardProp: cardType.isRequired,
   deleteCardHandler: PropTypes.func.isRequired,
   editCardHandler: PropTypes.func.isRequired,
-  voteCardHandler: PropTypes.func.isRequired
+  upVoteCard: PropTypes.func.isRequired,
+  voters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default CardItem;

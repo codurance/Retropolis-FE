@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@material-ui/core/Card';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,6 +19,18 @@ const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
   const username = getUsername();
   const [edit, setEdit] = useState(false);
   const [editError, setEditError] = useState(false);
+  const [voters, setVoters] = useState([]);
+
+  useEffect(() => {
+    setVoters(cardProp.voters);
+  }, [cardProp.voters]);
+
+  function upVoteCard() {
+    const currentVoters = [...voters];
+    setVoters([...currentVoters, username]);
+    sendUpVote(cardProp.id, username).then(() => {
+    });
+  }
 
   function deleteCardHandler() {
     deleteCardApi(cardProp.id).then(() => {
@@ -37,10 +49,6 @@ const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
     }).catch(() => setEditError(true));
   };
 
-  const handleUpvoteCard = () => {
-    sendUpVote(cardProp.id, username).then(() => {});
-  };
-
   return (
     <Card className={classes.root}>
       {edit ? (
@@ -54,10 +62,11 @@ const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
         />
       ) : (
         <CardItem
-          voteCardHandler={handleUpvoteCard}
           deleteCardHandler={deleteCardHandler}
           editCardHandler={editCardHandler}
           cardProp={cardProp}
+          upVoteCard={upVoteCard}
+          voters={voters}
         />
       )}
     </Card>
@@ -68,7 +77,8 @@ const cardType = PropTypes.shape({
   text: PropTypes.string,
   id: PropTypes.number,
   username: PropTypes.string,
-  columnId: PropTypes.number
+  columnId: PropTypes.number,
+  voters: PropTypes.array
 });
 
 CardContainer.propTypes = {
