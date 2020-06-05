@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { deleteCardApi } from '../../api/cardsApi';
+import { deleteCardApi, editCard, sendUpVote } from '../../api/cardsApi';
 import CardItem from './CardItem';
 import EditCardForm from '../CardForm/EditCardForm';
+import { getUsername } from '../../services/loginService';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,38 +16,59 @@ const useStyles = makeStyles(() => ({
 
 const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
   const classes = useStyles();
+  const username = getUsername();
   const [edit, setEdit] = useState(false);
+  const [editError, setEditError] = useState(false);
+  const [voters, setVoters] = useState([]);
+
+  const haveVoted = () => voters.includes(username);
+
+  useEffect(() => {
+    setVoters(cardProp.voters);
+  }, [cardProp.voters]);
+
+  function upVoteCard() {
+    const currentVoters = [...voters];
+    setVoters([...currentVoters, username]);
+    sendUpVote(cardProp.id, username).catch(() => setVoters([...currentVoters]));
+  }
 
   function deleteCardHandler() {
     deleteCardApi(cardProp.id).then(() => {
       handleDeleteCard(cardProp);
-    }).catch(() => {
-    });
+    }).catch(() => {});
   }
 
-  function editCardHandler() {
-    setEdit(true);
-  }
+  const editCardHandler = () => setEdit(true);
+
+  const handleFormSubmit = (e, text) => {
+    e.preventDefault();
+    editCard(cardProp.id, text).then((updatedCard) => {
+      setEditError(false);
+      setEdit(false);
+      editCardToBoard(updatedCard);
+    }).catch(() => setEditError(true));
+  };
 
   return (
     <Card className={classes.root}>
       {edit ? (
-        <CardContent className={classes.body}>
-          <EditCardForm
-            editCardToBoard={editCardToBoard}
-            handleCancelButton={setEdit}
-            cardId={cardProp.id}
-            defaultText={cardProp.text}
-          />
-        </CardContent>
+        <EditCardForm
+          handleFormSubmit={handleFormSubmit}
+          handleCancelButton={setEdit}
+          error={editError}
+          defaultText={cardProp.text}
+        />
       ) : (
         <CardItem
           deleteCardHandler={deleteCardHandler}
           editCardHandler={editCardHandler}
           cardProp={cardProp}
+          upVoteCard={upVoteCard}
+          voters={voters}
+          haveVoted={haveVoted}
         />
       )}
-
     </Card>
   );
 };
@@ -56,7 +77,8 @@ const cardType = PropTypes.shape({
   text: PropTypes.string,
   id: PropTypes.number,
   username: PropTypes.string,
-  columnId: PropTypes.number
+  columnId: PropTypes.number,
+  voters: PropTypes.array
 });
 
 CardContainer.propTypes = {

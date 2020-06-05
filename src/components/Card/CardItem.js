@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import * as PropTypes from 'prop-types';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -8,8 +8,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import CardActions from '@material-ui/core/CardActions';
 import { ThumbUp, ThumbUpOutlined } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
-import { sendUpVote } from '../../api/cardsApi';
-import { getUsername } from '../../services/loginService';
 
 const useStyles = makeStyles(() => ({
   author: {
@@ -37,28 +35,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 const CardItem = ({
-  cardProp, deleteCardHandler, editCardHandler
+  cardProp, deleteCardHandler, editCardHandler, upVoteCard, voters, haveVoted
 }) => {
   const classes = useStyles();
-  const username = getUsername();
-  const [voters, setVoters] = useState([]);
-
-  useEffect(() => {
-    setVoters(cardProp.voters);
-  }, [cardProp.voters]);
-
-  function upVoteCard() {
-    const currentVoters = [...voters];
-    setVoters([...currentVoters, username]);
-
-    sendUpVote(cardProp.id, username).catch(() => {
-      setVoters(currentVoters);
-    });
-  }
-
-  function haveVoted() {
-    return voters.includes(username);
-  }
 
   return (
     <>
@@ -116,7 +95,10 @@ const cardType = PropTypes.shape({
 CardItem.propTypes = {
   cardProp: cardType.isRequired,
   deleteCardHandler: PropTypes.func.isRequired,
-  editCardHandler: PropTypes.func.isRequired
+  editCardHandler: PropTypes.func.isRequired,
+  upVoteCard: PropTypes.func.isRequired,
+  haveVoted: PropTypes.func.isRequired,
+  voters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default CardItem;

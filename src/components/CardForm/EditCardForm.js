@@ -6,7 +6,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { editCard } from '../../api/cardsApi';
+import CardContent from '@material-ui/core/CardContent';
 
 
 const useStyles = makeStyles(() => ({
@@ -23,69 +23,55 @@ const useStyles = makeStyles(() => ({
 }));
 
 const EditCardForm = ({
-  cardId, handleCancelButton, defaultText, editCardToBoard
+  handleCancelButton, defaultText, handleFormSubmit, error
 }) => {
   const classes = useStyles();
   const [text, setText] = useState(defaultText);
-  const [error, setError] = useState(false);
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    editCard(cardId, text).then((updatedCard) => {
-      setError(false);
-      handleCancelButton();
-      editCardToBoard(updatedCard);
-    }).catch(() => setError(true));
-  };
-
-  const handleChangeText = (e) => {
-    setText(e.target.value);
-  };
-
-  const onKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleFormSubmit(event);
-    }
-  };
+  const handleChangeText = (e) => setText(e.target.value);
+  const onKeyPress = (event) => { if (event.key === 'Enter') handleFormSubmit(event, text); };
 
   return (
-    <form onSubmit={(e) => handleFormSubmit(e)}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <TextField
-            className={classes.textField}
-            required
-            error={error}
-            label="Enter a title for this card..."
-            fullWidth
-            multiline
-            autoFocus
-            onKeyPress={(e) => onKeyPress(e)}
-            variant="outlined"
-            value={text}
-            onChange={handleChangeText}
-          />
+    <CardContent>
+      <form onSubmit={(e) => handleFormSubmit(e, text)}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <TextField
+              className={classes.textField}
+              required
+              error={error}
+              label="Enter a title for this card..."
+              fullWidth
+              multiline
+              autoFocus
+              onKeyPress={(e) => onKeyPress(e)}
+              variant="outlined"
+              value={text}
+              onChange={handleChangeText}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              data-testid="save-edit-button"
+              className={classes.submitButton}
+              size="small"
+              type="submit"
+              color="primary"
+              variant="contained"
+            >
+              Save card
+            </Button>
+            <IconButton
+              className={classes.iconButton}
+              size="small"
+              onClick={() => handleCancelButton()}
+            >
+              <ClearIcon fontSize="small" />
+            </IconButton>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Button
-            className={classes.submitButton}
-            size="small"
-            type="submit"
-            color="primary"
-            variant="contained"
-          >
-            Save card
-          </Button>
-          <IconButton
-            className={classes.iconButton}
-            size="small"
-            onClick={() => handleCancelButton()}
-          >
-            <ClearIcon fontSize="small" />
-          </IconButton>
-        </Grid>
-      </Grid>
-    </form>
+      </form>
+    </CardContent>
   );
 };
 
@@ -94,9 +80,9 @@ EditCardForm.defaultProps = {
 };
 
 EditCardForm.propTypes = {
-  cardId: PropTypes.number.isRequired,
   handleCancelButton: PropTypes.func.isRequired,
-  editCardToBoard: PropTypes.func.isRequired,
+  handleFormSubmit: PropTypes.func.isRequired,
+  error: PropTypes.bool.isRequired,
   defaultText: PropTypes.string
 };
 
