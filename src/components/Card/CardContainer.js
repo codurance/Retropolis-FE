@@ -53,10 +53,8 @@ const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
       {edit ? (
         <EditCardForm
           handleFormSubmit={handleFormSubmit}
-          editCardToBoard={editCardToBoard}
           handleCancelButton={setEdit}
           error={editError}
-          cardId={cardProp.id}
           defaultText={cardProp.text}
         />
       ) : (

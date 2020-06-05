@@ -105,9 +105,3 @@ CardItem.propTypes = {
 };
 
 export default CardItem;
-
-PropTypes.shape({
-  id: PropTypes.number,
-  title: PropTypes.string,
-  cards: PropTypes.array
-});
