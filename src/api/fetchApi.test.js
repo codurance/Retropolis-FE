@@ -34,3 +34,12 @@ it('throws response when status is 401', () => {
 
   expect(loginService.failLogin).toHaveBeenCalledTimes(1);
 });
+
+
+it('throws error if response is not ok or 401', () => {
+  const mockResponse = {
+    text: () => 'text'
+  };
+
+  expect(() => handleResponse(mockResponse)).toThrowError('text');
+});
