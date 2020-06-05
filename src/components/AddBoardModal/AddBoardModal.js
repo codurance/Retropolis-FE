@@ -1,17 +1,32 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import * as PropTypes from 'prop-types';
-import Fab from '@material-ui/core/Fab';
+import { makeStyles } from '@material-ui/core/styles';
 import { getUserEmail } from '../../services/loginService';
 import { saveBoard } from '../../api/boardsApi';
 
+
+const useStyles = makeStyles(() => ({
+  button: {
+    float: 'right',
+    marginBottom: '10px'
+  },
+  addBoardCard: {
+    backgroundColor: '#1976d2',
+    color: 'white',
+    textAlign: 'center',
+    minHeight: '60px'
+  }
+}));
+
 const AddBoardModal = ({ history }) => {
+  const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
   const [text, setText] = useState('');
   const [error, setError] = useState(false);
@@ -40,9 +55,9 @@ const AddBoardModal = ({ history }) => {
 
   return (
     <>
-      <Fab data-testid="add-board-button" onClick={handleClickOpen} color="primary" aria-label="Add">
-        <AddIcon />
-      </Fab>
+      <Button className={classes.button} data-testid="add-board-button" variant="contained" color="secondary" onClick={handleClickOpen} aria-label="Add">
+        Create New Board
+      </Button>
       <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <form onSubmit={(e) => handleAddBoardButton(e)}>
           <DialogTitle id="form-dialog-title">Create Board</DialogTitle>
