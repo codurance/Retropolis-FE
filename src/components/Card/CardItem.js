@@ -8,7 +8,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import CardActions from '@material-ui/core/CardActions';
 import { ThumbUp, ThumbUpOutlined } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
-import { getUsername } from '../../services/loginService';
 
 const useStyles = makeStyles(() => ({
   author: {
@@ -36,12 +35,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 const CardItem = ({
-  cardProp, deleteCardHandler, editCardHandler, upVoteCard, voters
+  cardProp, deleteCardHandler, editCardHandler, upVoteCard, voters, haveVoted
 }) => {
   const classes = useStyles();
-  const username = getUsername();
-
-  const haveVoted = () => voters.includes(username);
 
   return (
     <>
@@ -101,6 +97,7 @@ CardItem.propTypes = {
   deleteCardHandler: PropTypes.func.isRequired,
   editCardHandler: PropTypes.func.isRequired,
   upVoteCard: PropTypes.func.isRequired,
+  haveVoted: PropTypes.func.isRequired,
   voters: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 

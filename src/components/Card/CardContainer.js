@@ -21,6 +21,8 @@ const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
   const [editError, setEditError] = useState(false);
   const [voters, setVoters] = useState([]);
 
+  const haveVoted = () => voters.includes(username);
+
   useEffect(() => {
     setVoters(cardProp.voters);
   }, [cardProp.voters]);
@@ -64,6 +66,7 @@ const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
           cardProp={cardProp}
           upVoteCard={upVoteCard}
           voters={voters}
+          haveVoted={haveVoted}
         />
       )}
     </Card>
