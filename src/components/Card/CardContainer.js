@@ -28,8 +28,7 @@ const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
   function upVoteCard() {
     const currentVoters = [...voters];
     setVoters([...currentVoters, username]);
-    sendUpVote(cardProp.id, username).then(() => {
-    });
+    sendUpVote(cardProp.id, username).catch(() => setVoters([...currentVoters]));
   }
 
   function deleteCardHandler() {

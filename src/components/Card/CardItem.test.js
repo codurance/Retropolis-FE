@@ -14,7 +14,8 @@ function renderCardItem(args) {
     },
     deleteCardHandler: () => {},
     editCardHandler: () => {},
-    voteCardHandler: () => {}
+    upVoteCard: () => {},
+    voters: []
   };
   const props = { ...defaultProps, ...args };
   return render(<CardItem {...props} />);

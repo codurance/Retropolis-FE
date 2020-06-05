@@ -5,6 +5,7 @@ import {
 import {
   act, cleanup, render, waitFor
 } from '@testing-library/react';
+import { toBeDisabled } from '@testing-library/jest-dom/matchers';
 import * as service from '../../api/cardsApi';
 import CardContainer from './CardContainer';
 
@@ -55,4 +56,41 @@ it('shows the user name on the card', () => {
     }
   });
   getByText('John Doe');
+});
+
+it('increments the counter when you click up-vote', async () => {
+  const { getByTestId, getByText } = renderCardContainer();
+  getByTestId('upvote-card-button').click();
+  await waitFor(() => {
+    getByText('1');
+  });
+});
+
+it('disables the button when you click up-vote', async () => {
+  expect.extend({ toBeDisabled });
+  const { getByTestId } = renderCardContainer();
+  getByTestId('upvote-card-button').click();
+  await waitFor(() => {
+    expect(getByTestId('upvote-card-button')).toBeDisabled();
+  });
+});
+
+it('shows a number for the amount of votes', () => {
+  const { getByText } = renderCardContainer();
+  getByText('0');
+});
+
+it('has an up-vote button', () => {
+  const { getByTestId } = renderCardContainer();
+  getByTestId('upvote-card-button');
+});
+
+it('has a delete button', () => {
+  const { getByTestId } = renderCardContainer();
+  getByTestId('delete-card-button');
+});
+
+it('has an edit button', () => {
+  const { getByTestId } = renderCardContainer();
+  getByTestId('edit-card-button');
 });
