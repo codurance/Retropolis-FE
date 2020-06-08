@@ -6,6 +6,7 @@ import { getBoard } from '../../api/boardsApi';
 import { addNewCard, deleteCard, updateCardText } from '../../services/boardService';
 
 const Board = ({ history, match }) => {
+  console.log(history);
   const [board, setBoard] = useState({ columns: [] });
   const [error, setError] = useState(false);
   const addCard = (newCard) => {
@@ -29,7 +30,11 @@ const Board = ({ history, match }) => {
       setError(false);
     }).catch((err) => {
       if (err.status === 401) {
-        history.push('/login');
+        const redirect = {
+          pathname: '/login',
+          state: { from: { pathname: history.location.pathname } }
+        };
+        history.push(redirect);
       } else {
         setError(true);
       }
@@ -72,7 +77,8 @@ const Board = ({ history, match }) => {
 };
 
 const history = PropTypes.shape({
-  push: PropTypes.func.isRequired
+  push: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired
 });
 
 const match = PropTypes.shape({
