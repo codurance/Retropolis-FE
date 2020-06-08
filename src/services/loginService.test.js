@@ -1,9 +1,9 @@
 import { cleanup } from '@testing-library/react';
 import {
-  jest, it, afterEach, expect, beforeEach
+  jest, it, afterEach, expect, beforeEach, describe
 } from '@jest/globals';
 import {
-  failLogin, getToken, getUsername, successLogin
+  failLogin, getToken, getUsername, redirectAfterLogin, redirectToLogin, successLogin
 } from './loginService';
 
 beforeEach(() => {
@@ -50,4 +50,49 @@ it('should retrieve the token from the sessionStorage', () => {
 
   expect(sessionStorage.getItem).toHaveBeenCalledTimes(1);
   expect(sessionStorage.getItem).toHaveBeenCalledWith('userToken');
+});
+
+describe('login redirects', () => {
+  let historySpy;
+
+  beforeEach(() => {
+    historySpy = {
+      push: () => {}
+    };
+    jest.spyOn(historySpy, 'push');
+  });
+
+  it('redirects to login with current path in state', () => {
+    const currentPath = '/current_path';
+    historySpy.location = { pathname: currentPath };
+
+    redirectToLogin(historySpy);
+
+    const expectedRedirect = {
+      pathname: '/login',
+      state: { from: { pathname: currentPath } }
+    };
+    expect(historySpy.push).toHaveBeenCalledTimes(1);
+    expect(historySpy.push).toHaveBeenCalledWith(expectedRedirect);
+  });
+
+  it('redirects from login to given previous path', () => {
+    const previousPath = '/previous_path';
+    historySpy.location = {
+      state: { from: { pathname: previousPath } }
+    };
+
+    redirectAfterLogin(historySpy);
+
+    expect(historySpy.push).toHaveBeenCalledTimes(1);
+    expect(historySpy.push).toHaveBeenCalledWith(previousPath);
+  });
+
+  it('redirects from login home if no given previous path', () => {
+    redirectAfterLogin(historySpy);
+
+    const home = '/';
+    expect(historySpy.push).toHaveBeenCalledTimes(1);
+    expect(historySpy.push).toHaveBeenCalledWith(home);
+  });
 });
