@@ -2,7 +2,7 @@ import React from 'react';
 import GoogleLogin from 'react-google-login';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { failLogin, successLogin } from '../../services/loginService';
+import { failLogin, successLogin, redirectAfterLogin } from '../../services/loginService';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -17,13 +17,7 @@ const Login = ({ history }) => {
 
   const success = (res) => {
     successLogin(res);
-    let url;
-    try {
-      url = history.location.state.from.pathname;
-    } catch {
-      url = '/';
-    }
-    history.push(url);
+    redirectAfterLogin(history);
   };
 
   return (

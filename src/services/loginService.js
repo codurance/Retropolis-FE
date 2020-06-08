@@ -4,6 +4,24 @@ export function successLogin(googleResponse) {
   sessionStorage.setItem('userToken', googleResponse.tokenId);
 }
 
+export function redirectAfterLogin(history) {
+  let url;
+  try {
+    url = history.location.state.from.pathname;
+  } catch {
+    url = '/';
+  }
+  history.push(url);
+}
+
+export function redirectToLogin(history) {
+  const redirect = {
+    pathname: '/login',
+    state: { from: { pathname: history.location.pathname } }
+  };
+  history.push(redirect);
+}
+
 export function failLogin() {
   sessionStorage.removeItem('username');
   sessionStorage.removeItem('userToken');
