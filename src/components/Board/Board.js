@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Column from '../Column/Column';
 import { getBoard } from '../../api/boardsApi';
 import { addNewCard, deleteCard, updateCardText } from '../../services/boardService';
+import { redirectToLogin } from '../../services/loginService';
 
 const Board = ({ history, match }) => {
   const [board, setBoard] = useState({ columns: [] });
@@ -29,7 +30,7 @@ const Board = ({ history, match }) => {
       setError(false);
     }).catch((err) => {
       if (err.status === 401) {
-        history.push('/login');
+        redirectToLogin(history);
       } else {
         setError(true);
       }
@@ -72,7 +73,8 @@ const Board = ({ history, match }) => {
 };
 
 const history = PropTypes.shape({
-  push: PropTypes.func.isRequired
+  push: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired
 });
 
 const match = PropTypes.shape({

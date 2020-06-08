@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import AddBoardModal from '../AddBoardModal/AddBoardModal';
 import { getBoards } from '../../api/boardsApi';
+import { redirectToLogin } from '../../services/loginService';
 
 const useStyles = makeStyles(() => ({
   body: {
@@ -39,7 +40,7 @@ const Home = ({ history }) => {
       setFetching(false);
     }).catch((err) => {
       if (err.status === 401) {
-        history.push('/login');
+        redirectToLogin(history);
       } else {
         setError(true);
       }
