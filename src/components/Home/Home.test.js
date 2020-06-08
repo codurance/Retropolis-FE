@@ -10,7 +10,8 @@ jest.mock('../../api/boardsApi');
 function renderHome() {
   const props = {
     history: {
-      push: () => {}
+      push: () => {},
+      location: {}
     }
   };
   return render(<MemoryRouter><Home {...props} /></MemoryRouter>);

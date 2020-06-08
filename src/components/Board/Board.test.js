@@ -16,7 +16,8 @@ beforeEach(() => {
 function renderBoard(args) {
   const defaultProps = {
     history: {
-      push: () => {}
+      push: () => {},
+      location: {}
     },
     match: {
       params: {}
