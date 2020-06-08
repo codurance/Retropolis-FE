@@ -6,7 +6,6 @@ import { getBoard } from '../../api/boardsApi';
 import { addNewCard, deleteCard, updateCardText } from '../../services/boardService';
 
 const Board = ({ history, match }) => {
-  console.log(history);
   const [board, setBoard] = useState({ columns: [] });
   const [error, setError] = useState(false);
   const addCard = (newCard) => {
