@@ -30,7 +30,8 @@ const useStyles = makeStyles(() => ({
   },
   body: {
     paddingBottom: 0,
-    opacity: 0.7
+    opacity: 0.7,
+    wordBreak: 'normal'
   }
 }));
 
