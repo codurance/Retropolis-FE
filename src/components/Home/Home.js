@@ -39,7 +39,11 @@ const Home = ({ history }) => {
       setFetching(false);
     }).catch((err) => {
       if (err.status === 401) {
-        history.push('/login');
+        const redirect = {
+          pathname: '/login',
+          state: { from: { pathname: history.location.pathname } }
+        };
+        history.push(redirect);
       } else {
         setError(true);
       }
