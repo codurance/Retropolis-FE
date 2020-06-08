@@ -17,7 +17,13 @@ const Login = ({ history }) => {
 
   const success = (res) => {
     successLogin(res);
-    history.push('/');
+    let url;
+    try {
+      url = history.location.state.from.pathname;
+    } catch {
+      url = '/';
+    }
+    history.push(url);
   };
 
   return (
@@ -35,7 +41,8 @@ const Login = ({ history }) => {
 };
 
 const history = PropTypes.shape({
-  push: PropTypes.func.isRequired
+  push: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired
 });
 
 Login.propTypes = {
