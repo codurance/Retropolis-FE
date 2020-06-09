@@ -3,9 +3,10 @@ import Card from '@material-ui/core/Card';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { deleteCardApi, editCard, sendUpVote } from '../../api/cardsApi';
-import CardItem from './CardItem';
+import CardItem, { cardType } from './CardItem';
 import EditCardForm from '../CardForm/EditCardForm';
-import { getUsername } from '../../services/loginService';
+import { getUserEmail } from '../../services/loginService';
+
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,21 +17,24 @@ const useStyles = makeStyles(() => ({
 
 const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
   const classes = useStyles();
-  const username = getUsername();
+  const userEmail = getUserEmail();
   const [edit, setEdit] = useState(false);
   const [editError, setEditError] = useState(false);
-  const [voters, setVoters] = useState([]);
-
-  const haveVoted = () => voters.includes(username);
+  const [totalVoters, setVoters] = useState(cardProp.totalVoters);
+  const [haveVoted, setHaveVoted] = useState(cardProp.haveVoted);
 
   useEffect(() => {
-    setVoters(cardProp.voters);
-  }, [cardProp.voters]);
+    setVoters(cardProp.totalVoters);
+  }, [cardProp.totalVoters]);
 
   function upVoteCard() {
-    const currentVoters = [...voters];
-    setVoters([...currentVoters, username]);
-    sendUpVote(cardProp.id, username).catch(() => setVoters([...currentVoters]));
+    const currentVoters = totalVoters;
+    setVoters(totalVoters + 1);
+    setHaveVoted(true);
+    sendUpVote(cardProp.id, userEmail).catch(() => {
+      setVoters(currentVoters);
+      setHaveVoted(false);
+    });
   }
 
   function deleteCardHandler() {
@@ -65,7 +69,7 @@ const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
           editCardHandler={editCardHandler}
           cardProp={cardProp}
           upVoteCard={upVoteCard}
-          voters={voters}
+          totalVoters={totalVoters}
           haveVoted={haveVoted}
         />
       )}
@@ -73,13 +77,6 @@ const CardContainer = ({ cardProp, editCardToBoard, handleDeleteCard }) => {
   );
 };
 
-const cardType = PropTypes.shape({
-  text: PropTypes.string,
-  id: PropTypes.number,
-  username: PropTypes.string,
-  columnId: PropTypes.number,
-  voters: PropTypes.array
-});
 
 CardContainer.propTypes = {
   cardProp: cardType.isRequired,
