@@ -16,8 +16,9 @@ function renderCardContainer(args) {
     cardProp: {
       id: 0,
       text: 'test',
-      username: '',
-      voters: []
+      author: '',
+      haveVoted: false,
+      totalVoters: 0
     },
     editCardToBoard: () => {},
     handleDeleteCard: () => {}
@@ -32,10 +33,11 @@ it('removes card on click', async () => {
   await act(async () => {
     const { getByTestId, getByText } = renderCardContainer({
       cardProp: {
-        username: 'John Doe',
         id: 0,
         text: '',
-        voters: []
+        author: 'John Doe',
+        haveVoted: false,
+        totalVoters: 0
       }
     });
     getByText('John Doe');
@@ -49,10 +51,11 @@ it('removes card on click', async () => {
 it('shows the user name on the card', () => {
   const { getByText } = renderCardContainer({
     cardProp: {
-      username: 'John Doe',
       id: 0,
       text: '',
-      voters: []
+      author: 'John Doe',
+      haveVoted: false,
+      totalVoters: 0
     }
   });
   getByText('John Doe');

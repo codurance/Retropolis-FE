@@ -24,7 +24,6 @@ function renderBoard(args) {
   };
 
   const props = { ...defaultProps, ...args };
-
   return render(<Board {...props} />);
 }
 
