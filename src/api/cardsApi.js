@@ -36,5 +36,5 @@ export const sendUpVote = (id, email) => {
   if (!id || !email) return invalidError();
 
   const endpoint = `/cards/${id}/vote`;
-  return fetchWrapper({ endpoint, method: 'PATCH', body: { email } });
+  return fetchWrapper({ endpoint, method: 'PATCH', body: { email, addVote: true } });
 };
