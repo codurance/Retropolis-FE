@@ -5,7 +5,6 @@ import {
 import {
   act, cleanup, render, waitFor
 } from '@testing-library/react';
-import { toBeDisabled } from '@testing-library/jest-dom/matchers';
 import * as service from '../../api/cardsApi';
 import CardContainer from './CardContainer';
 
