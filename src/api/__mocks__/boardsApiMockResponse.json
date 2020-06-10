@@ -30,7 +30,7 @@
           "id": 3,
           "columnId": 2,
           "text": "stpo hello",
-       "haveVoted": false,
+          "haveVoted": false,
           "author": "John Doe",
           "totalVoters": 0
         },
@@ -38,7 +38,7 @@
           "id": 4,
           "columnId": 2,
           "text": "stop hello2",
-       "haveVoted": false,
+          "haveVoted": false,
           "author": "John Doe",
           "totalVoters": 0
         }
@@ -52,7 +52,7 @@
           "id": 5,
           "columnId": 3,
           "text": "hello from con",
-       "haveVoted": false,
+          "haveVoted": false,
           "author": "John Doe",
           "totalVoters": 0
         },
@@ -60,7 +60,7 @@
           "id": 6,
           "columnId": 3,
           "text": "hello2 continue",
-       "haveVoted": false,
+          "haveVoted": false,
           "author": "John Doe",
           "totalVoters": 0
         }
