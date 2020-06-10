@@ -36,7 +36,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const CardItem = ({
-  cardProp, deleteCardHandler, editCardHandler, upVoteCard, totalVoters, haveVoted
+  cardProp, deleteCardHandler, editCardHandler, toggleUpvote, totalVoters, haveVoted
 }) => {
   const classes = useStyles();
 
@@ -72,9 +72,8 @@ const CardItem = ({
         <span className={classes.upVoteCounter}>{totalVoters}</span>
         <IconButton
           data-testid="upvote-card-button"
-          disabled={haveVoted}
           size="small"
-          onClick={() => upVoteCard()}
+          onClick={() => toggleUpvote()}
         >
           {haveVoted
             ? <ThumbUp fontSize="small" />
@@ -98,7 +97,7 @@ CardItem.propTypes = {
   cardProp: cardType.isRequired,
   deleteCardHandler: PropTypes.func.isRequired,
   editCardHandler: PropTypes.func.isRequired,
-  upVoteCard: PropTypes.func.isRequired,
+  toggleUpvote: PropTypes.func.isRequired,
   haveVoted: PropTypes.bool.isRequired,
   totalVoters: PropTypes.number.isRequired
 };

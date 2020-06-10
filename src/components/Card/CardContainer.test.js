@@ -70,15 +70,6 @@ describe('upvoting', () => {
     });
   });
 
-  it('disables the button when you click up-vote', async () => {
-    expect.extend({ toBeDisabled });
-    const { getByTestId } = renderCardContainer();
-    getByTestId('upvote-card-button').click();
-    await waitFor(() => {
-      expect(getByTestId('upvote-card-button')).toBeDisabled();
-    });
-  });
-
   it('shows a number for the amount of votes', () => {
     const { getByText } = renderCardContainer();
     getByText('0');
