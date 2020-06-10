@@ -8,13 +8,17 @@
           "id": 1,
           "columnId": 1,
           "text": "hello",
-          "voters": []
+          "haveVoted": false,
+          "author": "John Doe",
+          "totalVoters": 0
         },
         {
           "id": 2,
           "columnId": 1,
           "text": "hello2",
-          "voters": []
+          "haveVoted": false,
+          "author": "John Doe",
+          "totalVoters": 0
         }
       ]
     },
@@ -26,13 +30,17 @@
           "id": 3,
           "columnId": 2,
           "text": "stpo hello",
-          "voters": []
+          "haveVoted": false,
+          "author": "John Doe",
+          "totalVoters": 0
         },
         {
           "id": 4,
           "columnId": 2,
           "text": "stop hello2",
-          "voters": []
+          "haveVoted": false,
+          "author": "John Doe",
+          "totalVoters": 0
         }
       ]
     },
@@ -44,13 +52,17 @@
           "id": 5,
           "columnId": 3,
           "text": "hello from con",
-          "voters": []
+          "haveVoted": false,
+          "author": "John Doe",
+          "totalVoters": 0
         },
         {
           "id": 6,
           "columnId": 3,
           "text": "hello2 continue",
-          "voters": []
+          "haveVoted": false,
+          "author": "John Doe",
+          "totalVoters": 0
         }
       ]
     }

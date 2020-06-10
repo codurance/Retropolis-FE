@@ -15,7 +15,9 @@ function renderColumn(args) {
           id: 1,
           columnId: 1,
           text: 'Any text',
-          voters: []
+          author: 'John doe',
+          haveVoted: false,
+          totalVoters: 0
         }
       ]
     },

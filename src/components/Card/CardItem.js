@@ -36,7 +36,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const CardItem = ({
-  cardProp, deleteCardHandler, editCardHandler, upVoteCard, voters, haveVoted
+  cardProp, deleteCardHandler, editCardHandler, upVoteCard, totalVoters, haveVoted
 }) => {
   const classes = useStyles();
 
@@ -66,17 +66,17 @@ const CardItem = ({
         </Typography>
       </CardContent>
       <CardActions className={classes.author}>
-        {cardProp.username}
+        {cardProp.author}
       </CardActions>
       <CardActions disableSpacing className={classes.upVote}>
-        <span className={classes.upVoteCounter}>{voters.length}</span>
+        <span className={classes.upVoteCounter}>{totalVoters}</span>
         <IconButton
           data-testid="upvote-card-button"
-          disabled={haveVoted()}
+          disabled={haveVoted}
           size="small"
           onClick={() => upVoteCard()}
         >
-          {haveVoted()
+          {haveVoted
             ? <ThumbUp fontSize="small" />
             : <ThumbUpOutlined fontSize="small" />}
         </IconButton>
@@ -85,12 +85,13 @@ const CardItem = ({
   );
 };
 
-const cardType = PropTypes.shape({
+export const cardType = PropTypes.shape({
   text: PropTypes.string,
   id: PropTypes.number,
   username: PropTypes.string,
   columnId: PropTypes.number,
-  voters: PropTypes.array
+  totalVoters: PropTypes.number,
+  haveVoted: PropTypes.bool
 });
 
 CardItem.propTypes = {
@@ -98,8 +99,8 @@ CardItem.propTypes = {
   deleteCardHandler: PropTypes.func.isRequired,
   editCardHandler: PropTypes.func.isRequired,
   upVoteCard: PropTypes.func.isRequired,
-  haveVoted: PropTypes.func.isRequired,
-  voters: PropTypes.arrayOf(PropTypes.string).isRequired
+  haveVoted: PropTypes.bool.isRequired,
+  totalVoters: PropTypes.number.isRequired
 };
 
 export default CardItem;

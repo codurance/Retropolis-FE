@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import * as PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { saveCard } from '../../api/cardsApi';
-import { getUsername } from '../../services/loginService';
+import { getUserEmail } from '../../services/loginService';
 
 
 const useStyles = makeStyles(() => ({
@@ -32,7 +32,7 @@ const AddCardForm = ({
 
   const handleAddCardButton = (e) => {
     e.preventDefault();
-    saveCard({ columnId: colId, text, username: getUsername() }).then((newCard) => {
+    saveCard({ columnId: colId, text, email: getUserEmail() }).then((newCard) => {
       setError(false);
       handleCancelButton();
       handleAddCard(newCard);
