@@ -5,7 +5,6 @@ import {
 import {
   act, cleanup, render, waitFor
 } from '@testing-library/react';
-import { toBeDisabled } from '@testing-library/jest-dom/matchers';
 import * as service from '../../api/cardsApi';
 import CardContainer from './CardContainer';
 
@@ -67,15 +66,6 @@ describe('upvoting', () => {
     getByTestId('upvote-card-button').click();
     await waitFor(() => {
       getByText('1');
-    });
-  });
-
-  it('disables the button when you click up-vote', async () => {
-    expect.extend({ toBeDisabled });
-    const { getByTestId } = renderCardContainer();
-    getByTestId('upvote-card-button').click();
-    await waitFor(() => {
-      expect(getByTestId('upvote-card-button')).toBeDisabled();
     });
   });
 

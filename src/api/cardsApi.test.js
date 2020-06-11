@@ -135,7 +135,8 @@ describe('up vote card', () => {
     it('throws error when id is null', async (done) => {
       fetchApiSpy = jest.spyOn(fetchApi, 'fetchWrapper').mockImplementationOnce(() => {});
       const email = 'john.doe@codurance.com';
-      sendUpVote(null, email).catch((err) => {
+      const addVote = true;
+      sendUpVote(null, email, addVote).catch((err) => {
         expect(err.message).toEqual('Invalid card request');
         done();
       });
@@ -146,12 +147,14 @@ describe('up vote card', () => {
     it('sends up voted card with updated voters array', async () => {
       fetchApiSpy = jest.spyOn(fetchApi, 'fetchWrapper').mockImplementationOnce(() => {});
       const email = 'john.doe@codurance.com';
-      await sendUpVote(cardId, email);
+      const addVote = true;
+      await sendUpVote(cardId, email, addVote);
       expect(fetchApiSpy).toHaveBeenCalledWith({
         endpoint: cardUrl + '/' + cardId + '/vote',
         method: 'PATCH',
         body: {
-          email
+          email,
+          addVote
         }
       });
     });

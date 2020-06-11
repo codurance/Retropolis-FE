@@ -32,9 +32,9 @@ export const deleteCardApi = (cardId) => {
   return fetchWrapper({ endpoint, method: 'DELETE' });
 };
 
-export const sendUpVote = (id, email) => {
+export const sendUpVote = (id, email, addVote) => {
   if (!id || !email) return invalidError();
 
   const endpoint = `/cards/${id}/vote`;
-  return fetchWrapper({ endpoint, method: 'PATCH', body: { email } });
+  return fetchWrapper({ endpoint, method: 'PATCH', body: { email, addVote } });
 };
