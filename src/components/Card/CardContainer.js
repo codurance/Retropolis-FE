@@ -10,6 +10,7 @@ import { getUserEmail } from '../../services/loginService';
 const useStyles = makeStyles(() => ({
   root: {
     wordBreak: 'break-all',
+    wordWrap: 'break-word',
     marginBottom: '10px'
   }
 }));
