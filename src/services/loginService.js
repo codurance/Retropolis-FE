@@ -25,6 +25,7 @@ export function redirectToLogin(history) {
 export function failLogin() {
   sessionStorage.removeItem('username');
   sessionStorage.removeItem('userToken');
+  sessionStorage.removeItem('userEmail');
 }
 
 export function getUsername() {
@@ -37,8 +38,4 @@ export function getUserEmail() {
 
 export function getToken() {
   return sessionStorage.getItem('userToken');
-}
-
-export function getAuth() {
-  return getToken() && getUsername();
 }
