@@ -25,6 +25,7 @@ export function redirectToLogin(history) {
 export function failLogin() {
   sessionStorage.removeItem('username');
   sessionStorage.removeItem('userToken');
+  sessionStorage.removeItem('userEmail');
 }
 
 export function getUsername() {
