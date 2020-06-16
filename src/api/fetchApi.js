@@ -3,7 +3,7 @@ import { failLogin, getToken } from '../services/loginService';
 const fetch = require('node-fetch');
 
 export const handleResponse = (response) => {
-  if (response.ok) return response.json();
+  if (response.ok) return response.json().catch(() => {});
   if (response.status === 401) {
     failLogin();
     throw response;
