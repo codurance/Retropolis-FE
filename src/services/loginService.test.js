@@ -29,9 +29,10 @@ it('should remove the username and the token from the sessionStorage', () => {
 
   failLogin();
 
-  expect(sessionStorage.removeItem).toHaveBeenCalledTimes(2);
+  expect(sessionStorage.removeItem).toHaveBeenCalledTimes(3);
   expect(sessionStorage.removeItem).toHaveBeenCalledWith('username');
-  expect(sessionStorage.removeItem).toHaveBeenLastCalledWith('userToken');
+  expect(sessionStorage.removeItem).toHaveBeenCalledWith('userToken');
+  expect(sessionStorage.removeItem).toHaveBeenLastCalledWith('userEmail');
 });
 
 it('should retrieve the username from the sessionStorage', () => {
