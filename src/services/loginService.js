@@ -39,7 +39,3 @@ export function getUserEmail() {
 export function getToken() {
   return sessionStorage.getItem('userToken');
 }
-
-export function getAuth() {
-  return getToken() && getUsername();
-}
