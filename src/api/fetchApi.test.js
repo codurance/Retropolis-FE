@@ -12,13 +12,14 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-it('returns the response when response is ok', () => {
+it('returns the response when response is ok', async () => {
   const mockResponse = {
     ok: true,
-    json: () => 'response'
+    json: () => Promise.resolve('response')
   };
 
-  expect(handleResponse(mockResponse)).toBe('response');
+  const response = await handleResponse(mockResponse);
+  expect(response).toBe('response');
 });
 
 it('throws response when status is 401', () => {
@@ -32,7 +33,6 @@ it('throws response when status is 401', () => {
 
   expect(loginService.failLogin).toHaveBeenCalledTimes(1);
 });
-
 
 it('throws error if response is not ok or 401', () => {
   const mockResponse = {
