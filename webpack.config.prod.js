@@ -18,7 +18,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      'process.env.API_URL': JSON.stringify('https://api.retroplis.codurance.io'),
+      'process.env.API_URL': JSON.stringify('https://api.retropolis.codurance.io'),
       'process.env.GOOGLE_AUTH_CLIENT_ID': JSON.stringify(process.env.GOOGLE_AUTH_CLIENT_ID)
     }),
     new MiniCssExtractPlugin({
